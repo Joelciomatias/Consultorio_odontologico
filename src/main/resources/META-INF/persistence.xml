@@ -15,7 +15,8 @@
 		<class>br.edu.aplicacao.entidades.Telefone</class>
 		<class>br.edu.aplicacao.entidades.Endereco</class>
 		<class>br.edu.aplicacao.entidades.Grupo</class>
-		
+		<class>br.edu.aplicacao.entidades.Paciente</class>
+				
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:bdaplicacao" />

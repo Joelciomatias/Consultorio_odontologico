@@ -53,7 +53,14 @@
 							<i class="fa fa-circle-o"></i>Usuários
 						</p:link>
 					</li>					
-				</ul>				
+				</ul>
+				<ul class="treeview-menu" jsf:rendered="#{autenticadorBB.ehAdministradorUsuarioLogado}">
+					<li class="#{activeSubmenu eq 'usuario' ? 'active' : ''}" >
+						<p:link href="/pages/paciente/pesquisar_paciente.jsf" ajax="false">
+							<i class="fa fa-circle-o"></i>Pacientes
+						</p:link>
+					</li>					
+				</ul>							
 			</li>
 			
 			<!-- Menu: Agenda -->

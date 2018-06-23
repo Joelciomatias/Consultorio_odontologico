@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">	
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" >
+	
+	<ui:composition template="/pages/templates/layout.xhtml">
+	   	<ui:param name="activeSubmenu" value="paciente"/>
+    	<ui:param name="activeMenu" value="agenda"/>
+    	
+    	<f:metadata>
+        	<f:viewAction action="#{manterPacienteBB.prepararAlteracao(param.idContatoPesquisa)}" />
+    	</f:metadata>
+    	    	
+		<ui:define name="breadcrumb">		
+		   <li>		   
+		  		<span>        			
+		  			<h:outputText value="Contatos/Alterar Contato" rendered="#{manterPacienteBB.ehAlteracao}" />
+        			<h:outputText value="Contatos/Incluir Contato" rendered="#{!manterPacienteBB.ehAlteracao}" />
+        	 	</span> 
+		   </li>          
+		</ui:define>
+
+		<ui:define name="body">
+			<div class="box">
+				<h:form id="usuarioInserirForm" acceptcharset="ISO-8859-1 UTF-8">					
+					<div class="box-header with-border">
+						<div class="col-xs-6 col-sm-3">
+							<h3 class="box-title">
+								<h:outputText value="Alterar Contato" rendered="#{manterPacienteBB.ehAlteracao}" />
+       							<h:outputText value="Incluir Contato" rendered="#{!manterPacienteBB.ehAlteracao}" />
+							</h3>
+						</div>	
+						<div class="box-tools pull-right">
+							<span class="observacao">(*) Campo obrigatório</span>
+						</div>
+					</div>
+
+					<div class="form-group col-md-12">
+						<p:inputText type="hidden" id="id" value="#{manterPacienteBB.id}" />
+					</div>
+
+					<!-- Campo: nome -->
+					<div class="form-group col-md-3">
+						<p:outputLabel for="nome" value="Nome" indicateRequired="true" />
+
+						<p:inputText 
+							value="#{manterPacienteBB.nome}"							
+							id="nome" 
+							required="true" 
+							maxlength="150"
+							styleClass="form-control" 
+						/>							
+					</div>
+					
+					<!-- Campo: email -->
+					<div class="form-group col-md-3">
+						<p:outputLabel for="email" value="Email" indicateRequired="false" />
+
+						<!-- Fonte: https://www.mkyong.com/jsf2/primefaces/primefaces-jsf-email-validator-example/ -->
+						<p:inputText
+							value="#{manterPacienteBB.email}" 
+							id="email"							 
+							required="false"
+							maxlength="70"							
+							validatorMessage="Email: informe um endereço de email válido."
+							styleClass="form-control" 
+							>
+
+							<f:validateRegex
+								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" 
+							/>
+						</p:inputText>
+					</div>
+					
+				 	<div class="form-group col-md-3">
+						<p:outputLabel for="emailConfirmacao" value="Email (confirmação)" indicateRequired="false" />
+
+						Fonte: https://www.mkyong.com/jsf2/primefaces/primefaces-jsf-email-validator-example/
+						<p:inputText
+							value="#{manterPacienteBB.emailConfirmacao}" 
+							id="emailConfirmacao"							 
+							required="false"
+							maxlength="70"							
+							validatorMessage="Email (confirmação): informe um endereço de email válido."
+							styleClass="form-control" 
+							>
+
+							<f:validateRegex
+								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" 
+							/>
+						</p:inputText>
+					</div> 
+					
+					<!-- Campo: dt nascimento -->
+					<div class="form-group col-md-3">						
+						<p:outputLabel for="dtNascimento" value="Data de Nascimento" indicateRequired="false" />
+
+						<p:calendar 
+							value="#{manterPacienteBB.dtNascimento}"
+							id="dtNascimento"
+							required="false"  
+							pattern="dd/MM/yyyy" 
+							mask="true"
+							locale="pt_BR"			
+							styleClass="form-control"
+							style="border-color: transparent !important; padding-left: 0px !important;"															
+						/>
+							</div> 
+				
+					<!--	Botões de ação - Contato
+							=====================================================================================						 	
+					-->
+					<div 
+						class="box-footer align-center with-border"
+						jsf:rendered="#{!manterPacienteBB.ehAlteracao}"
+						>
+											
+						<p:commandButton 
+							value="Incluir" 
+							title="Incluir Paciente"
+							actionListener="#{manterPacienteBB.incluir()}" 
+							styleClass="btn btn-primary" 
+						/>
+					</div>					
+					<div 
+						class="box-footer align-center with-border" 
+						jsf:rendered="#{manterPacienteBB.ehAlteracao}"
+						>
+											
+						<p:commandButton 
+							value="Alterar" 
+							title="Salvar Alteração"
+							actionListener="#{manterContatoBB.salvarAlteracao()}" 
+							styleClass="btn btn-primary" 
+						/>
+					</div>				
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</ui:component>
