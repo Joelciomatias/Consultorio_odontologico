@@ -123,7 +123,7 @@
 									icon="ui-icon-pencil" 									 	 
 								 	title="Alterar Perfil"							 		
 							 		ajax="false"
-							 		rendered="#{autenticadorBB.ehAdministradorUsuarioLogado and !autenticadorBB.idInformadoEhUsuarioLogado(usuario.id)}"
+							 		rendered="#{autenticadorBB.ehAdministradorUsuarioLogado}"
 								 	action="#{pesquisarUsuarioBB.redirecionarParaManterUsuario(usuario.id)}">
 								</p:commandButton>
 								
@@ -133,7 +133,7 @@
 									title="Remover Usuário"	
 								 	ajax="true"
 								 	actionListener="#{pesquisarUsuarioBB.removerUsuario(usuario.id)}"	
-								 	rendered="#{autenticadorBB.ehAdministradorUsuarioLogado and !autenticadorBB.idInformadoEhUsuarioLogado(usuario.id)}"								
+								 	rendered="#{autenticadorBB.ehAdministradorUsuarioLogado}"								
 							 		update=":gridForm :usuarioPesquisarForm">		
 									 	
 									<p:confirm header="Confirmação" message="Tem certeza que deseja continuar?" icon="ui-icon-alert" />	 

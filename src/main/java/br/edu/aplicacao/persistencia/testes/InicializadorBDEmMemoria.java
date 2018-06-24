@@ -15,16 +15,19 @@ import br.edu.aplicacao.entidades.Grupo;
 import br.edu.aplicacao.entidades.Telefone;
 import br.edu.aplicacao.entidades.Usuario;
 import br.edu.aplicacao.entidades.Paciente;
+import br.edu.aplicacao.entidades.Dentista;
 import br.edu.aplicacao.enums.CategoriaEnderecoEnum;
 import br.edu.aplicacao.enums.CategoriaTelefoneEnum;
 import br.edu.aplicacao.enums.TipoEnderecoEnum;
 import br.edu.aplicacao.enums.UnidadeFederacaoEnum;
 import br.edu.aplicacao.persistencia.interfaces.IContatoDAO;
 import br.edu.aplicacao.persistencia.interfaces.IPacienteDAO;
+import br.edu.aplicacao.persistencia.interfaces.IDentistaDAO;
 import br.edu.aplicacao.persistencia.interfaces.IGrupoDAO;
 import br.edu.aplicacao.persistencia.interfaces.ITelefoneDAO;
 import br.edu.aplicacao.persistencia.interfaces.IUsuarioDAO;
 import br.edu.aplicacao.persistencia.interfaces.impl.ContatoDAOImpl;
+import br.edu.aplicacao.persistencia.interfaces.impl.DentistaDAOImpl;
 import br.edu.aplicacao.persistencia.interfaces.impl.PacienteDAOImpl;
 import br.edu.aplicacao.persistencia.interfaces.impl.GrupoDAOImpl;
 import br.edu.aplicacao.persistencia.interfaces.impl.TelefoneDAOImpl;
@@ -35,6 +38,8 @@ import br.edu.javaee.persistencia.EMFactorySingleton;
 public class InicializadorBDEmMemoria {
 
 	private IContatoDAO daoContato;
+	
+	private IDentistaDAO daoDentista;
 	
 	private IUsuarioDAO daoUsuario;
 	
@@ -56,7 +61,8 @@ public class InicializadorBDEmMemoria {
 		daoTelefone = new TelefoneDAOImpl(em);
 		daoGrupo = new GrupoDAOImpl(em);
 		daoPaciente = new PacienteDAOImpl(em);
-	
+		daoDentista = new DentistaDAOImpl(em);
+		
 		try {
 			em.getTransaction().begin();
 			
@@ -79,6 +85,8 @@ public class InicializadorBDEmMemoria {
 			preparaCadastroDeContatosComEndereco();
 						
 			preparaCadastroDePaciente();
+			
+			preparaCadastroDeDentista();
 			
 			if(em.getTransaction().isActive())
 				em.getTransaction().commit();
@@ -111,9 +119,27 @@ public class InicializadorBDEmMemoria {
 
 		paciente = new Paciente("joao","joao@contato.com.br",DataEHoraUtils.dataHoraStringParaDate("01/06/2018 12:00"));
 		
-		daoPaciente.inserir(paciente);		
+		daoPaciente.inserir(paciente);	
+		
+		em.flush();
 	}
 
+	private void preparaCadastroDeDentista() throws ParseException {
+		Dentista dentista;
+		
+		Usuario usuarioadm;		
+		Contato contato;
+		
+		// Dono da Lista = ADM
+		usuarioadm = daoUsuario.buscarPor(1L);
+					
+		dentista = new Dentista("paulo","paulo@contato.com.br",DataEHoraUtils.dataHoraStringParaDate("01/06/1990 12:00"),
+				"99999099999","rua das flores 4545","85876786-3",usuarioadm);
+		dentista.setDtInclusao(DataEHoraUtils.dataHoraStringParaDate("10/02/2018 12:00"));
+		daoDentista.inserir(dentista);
+		
+		em.flush();
+	}
 	private void preparaCadastroDeUsuarios() throws ParseException {
 		
 		Usuario usuario;

@@ -12,6 +12,7 @@
 		
 		<class>br.edu.aplicacao.entidades.Usuario</class>
 		<class>br.edu.aplicacao.entidades.Contato</class>
+		<class>br.edu.aplicacao.entidades.Dentista</class>
 		<class>br.edu.aplicacao.entidades.Telefone</class>
 		<class>br.edu.aplicacao.entidades.Endereco</class>
 		<class>br.edu.aplicacao.entidades.Grupo</class>
