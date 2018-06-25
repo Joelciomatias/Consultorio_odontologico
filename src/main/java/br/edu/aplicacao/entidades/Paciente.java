@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 /**
  * Entidade Pacient: id, nome, email, dt nascimento, e lista de telefones.
  * 
@@ -36,15 +37,30 @@ public class Paciente {
 	@Column(name = "pac_nascimento", nullable = true)
 	private Date dtNascimento;
 
-
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "fk_usuario", referencedColumnName = "id_usuario", nullable = false)
+	private Usuario usuario;
+	
+	@Column(name = "dt_inclusao", nullable=true)
+	private Date dtInclusao;
+	
+	
 	public Paciente() {
 		
 	}
 
+	public Paciente(String nome, String email, Date dtNascimento, Usuario usuario) {
+		this.nome = nome;
+		this.email = email;
+		this.dtNascimento = dtNascimento;
+		this.usuario = usuario;
+	}
+	
 	public Paciente(String nome, String email, Date dtNascimento) {
 		this.nome = nome;
 		this.email = email;
 		this.dtNascimento = dtNascimento;
+
 	}
 
 	public Long getId() {
@@ -58,7 +74,7 @@ public class Paciente {
 	public String getNome() {
 		return nome;
 	}
-
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -78,6 +94,14 @@ public class Paciente {
 	public void setDtNascimento(Date aniversario) {
 		this.dtNascimento = aniversario;
 	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 
 	@Override
@@ -88,6 +112,7 @@ public class Paciente {
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
 	}
 
@@ -120,6 +145,11 @@ public class Paciente {
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
+			return false;
+		if (usuario == null) {
+			if (other.usuario != null)
+				return false;
+		} else if (!usuario.equals(other.usuario))
 			return false;
 		return true;
 	}

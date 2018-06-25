@@ -16,12 +16,7 @@
 				</p:link>
 			</li>
 			
-			<!-- Menu: Sair -->
-			<li class="#{activeMenu eq 'inicial' ? 'active' : ''}">
-				<h:commandLink action="#{autenticadorBB.realizarLogout()}" > 
-					<i class="fa fa-power-off"></i><span>Sair</span> 
-				</h:commandLink>
-			</li>
+			
 			
 			<!-- Menu: Dashboard (ADM) -->
 			<li class="#{activeMenu eq 'dashboard' ? 'active' : ''}" jsf:rendered="#{autenticadorBB.ehAdministradorUsuarioLogado}">
@@ -30,18 +25,17 @@
 				</p:link>
 			</li>
 			
-			<!-- Menu: Cadastros básicos -->
+			<!-- Menu: Cadastros -->
 			<li class="treeview #{activeMenu eq 'cadastrosBasicos' ? 'active' : ''}" > 
 				<a href="#"> 
-					<i class="fa fa-user"></i> <span>Cadastros básicos</span> 
-					<i class="fa fa-angle-left pull-right"></i>
+					<i class="fa fa-users"></i> <span>Cadastros</span> 
 				</a>
 				
 				<!-- SubMenu: Meus Dados -->
 				<ul class="treeview-menu" >
 					<li class="#{activeSubmenu eq 'meudado' ? 'active' : ''}" >
 						<p:link href="/pages/usuario/meus_dados_usuario.jsf?idUsuario=#{autenticadorBB.idUsuarioLogado}" ajax="false">
-							<i class="fa fa-circle-o"></i>Meus Dados
+							<i class="fa fa-user-secret"></i>Meus Dados
 						</p:link>
 					</li>					
 				</ul>				
@@ -50,17 +44,25 @@
 				<ul class="treeview-menu" jsf:rendered="#{autenticadorBB.ehAdministradorUsuarioLogado}">
 					<li class="#{activeSubmenu eq 'usuario' ? 'active' : ''}" >
 						<p:link href="/pages/usuario/pesquisar_usuario.jsf" ajax="false">
-							<i class="fa fa-circle-o"></i>Usuários
+							<i class="fa fa-user"></i>Usuários
 						</p:link>
 					</li>					
 				</ul>
 				<ul class="treeview-menu" jsf:rendered="#{autenticadorBB.ehAdministradorUsuarioLogado}">
 					<li class="#{activeSubmenu eq 'usuario' ? 'active' : ''}" >
 						<p:link href="/pages/paciente/pesquisar_paciente.jsf" ajax="false">
-							<i class="fa fa-circle-o"></i>Pacientes
+							<i class="fa fa-heartbeat"></i>Pacientes
 						</p:link>
 					</li>					
-				</ul>							
+				</ul>
+				
+				<ul class="treeview-menu" jsf:rendered="#{autenticadorBB.ehAdministradorUsuarioLogado}">
+					<li class="#{activeSubmenu eq 'usuario' ? 'active' : ''}" >
+						<p:link href="/pages/dentista/pesquisar_dentista.jsf" ajax="false">
+							<i class="fa fa-user-md"></i>Dentistas
+						</p:link>
+					</li>					
+				</ul>								
 			</li>
 			
 			<!-- Menu: Agenda -->
@@ -104,6 +106,13 @@
 						</p:link>
 					</li>					
 				</ul>				
+			</li>
+			
+			<!-- Menu: Sair -->
+			<li class="#{activeMenu eq 'inicial' ? 'active' : ''}">
+				<h:commandLink action="#{autenticadorBB.realizarLogout()}" > 
+					<i class="fa fa-power-off"></i><span>Sair</span> 
+				</h:commandLink>
 			</li>
 		</ul>
 	</h:form>

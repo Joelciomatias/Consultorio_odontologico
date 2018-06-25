@@ -71,12 +71,8 @@ public class ManterPacienteBB implements Serializable {
 	private IPacienteDAO daoPaciente = new PacienteDAOImpl();
 
 	
-/*	private IUsuarioDAO daoUsuario = new UsuarioDAOImpl();
+	private IUsuarioDAO daoUsuario = new UsuarioDAOImpl();
 
-	private ITelefoneDAO daoTelefone = new TelefoneDAOImpl();
-
-	private IGrupoDAO daoGrupo = new GrupoDAOImpl();
-*/
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private Boolean ehAlteracao = false;
@@ -84,34 +80,9 @@ public class ManterPacienteBB implements Serializable {
 	private Long id;
 	private String nome;
 	private String email;
-private String emailConfirmacao;
+	private String emailConfirmacao;
 	private Date dtNascimento;
 
-/*	private Integer telefoneIndex = null;
-	private Integer telefoneCodigoArea;
-	private Integer telefoneDdd;
-	private Long telefoneNumero;
-	private Integer telefoneCategoriaCodigo;
-
-	private CategoriaTelefoneEnum[] telefoneCategoriaValores;
-	private List<ItemListaTelefoneDTO> itensTelefoneListaDto;
-	private List<ItemListaTelefoneDTO> itensTelefoneListaDtoExcluidos;
-	private int sequencia = 1;*/
-
-/*	private CategoriaEnderecoEnum[] enderecoCategoriaValores;
-	private Integer enderecoCategoriaCodigo;
-	private TipoEnderecoEnum[] enderecoTipoValores;
-	private Integer enderecoTipoCodigo;
-	private UnidadeFederacaoEnum[] enderecoUfValores;
-	private Integer enderecoUfCodigo;
-	private String enderecoLogradouro;
-	private String enderecoNumeroOuLoteamento;
-	private String enderecoLocalidade;
-	private String enderecoComplemento;
-	private String enderecoCep;
-
-	private List<Grupo> gruposDisponiveis;
-	private Long[] idsGruposSelecionados;*/
 
 	public ManterPacienteBB() {
 	}
@@ -162,180 +133,11 @@ private String emailConfirmacao;
 	public void setEhAlteracao(Boolean ehAlteracao) {
 		this.ehAlteracao = ehAlteracao;
 	}
-/*
-	public Integer getTelefoneCodigoArea() {
-	//	return telefoneCodigoArea;
-	}*/
-/*
-	public void setTelefoneCodigoArea(Integer telefoneCodigoArea) {
-		this.telefoneCodigoArea = telefoneCodigoArea;
-	}*/
 
-	/*public Integer getTelefoneDdd() {
-		return telefoneDdd;
-	}*/
-
-/*	public void setTelefoneDdd(Integer telefoneDdd) {
-		this.telefoneDdd = telefoneDdd;
-	}
-
-	public Long getTelefoneNumero() {
-		return telefoneNumero;
-	}
-
-	public void setTelefoneNumero(Long telefoneNumero) {
-		this.telefoneNumero = telefoneNumero;
-	}
-
-	public Integer getTelefoneCategoriaCodigo() {
-		return telefoneCategoriaCodigo;
-	}
-
-	public void setTelefoneCategoriaCodigo(Integer categoriaCodigo) {
-		this.telefoneCategoriaCodigo = categoriaCodigo;
-	}
-
-	public CategoriaTelefoneEnum[] getTelefoneCategoriaValores() {
-		return telefoneCategoriaValores;
-	}
-
-	public void setTelefoneCategoriaValores(CategoriaTelefoneEnum[] telefoneCategoriaValores) {
-		this.telefoneCategoriaValores = telefoneCategoriaValores;
-	}
-
-	public Integer getTelefoneIndex() {
-		return telefoneIndex;
-	}
-
-	public void setTelefoneIndex(Integer telefoneIndex) {
-		this.telefoneIndex = telefoneIndex;
-	}
-
-	public List<ItemListaTelefoneDTO> getItensTelefoneListaDto() {
-		if (itensTelefoneListaDto == null)
-			this.setItensTelefoneListaDto(new ArrayList<ItemListaTelefoneDTO>());
-
-		return itensTelefoneListaDto;
-	}
-
-	public void setItensTelefoneListaDto(List<ItemListaTelefoneDTO> telefoneLista) {
-		this.itensTelefoneListaDto = telefoneLista;
-	}
-
-	public CategoriaEnderecoEnum[] getEnderecoCategoriaValores() {
-		return enderecoCategoriaValores;
-	}
-
-	public void setEnderecoCategoriaValores(CategoriaEnderecoEnum[] enderecoCategoriaValores) {
-		this.enderecoCategoriaValores = enderecoCategoriaValores;
-	}
-
-	public Integer getEnderecoCategoriaCodigo() {
-		return enderecoCategoriaCodigo;
-	}
-
-	public void setEnderecoCategoriaCodigo(Integer enderecoCategoriaCodigo) {
-		this.enderecoCategoriaCodigo = enderecoCategoriaCodigo;
-	}
-
-	public TipoEnderecoEnum[] getEnderecoTipoValores() {
-		return enderecoTipoValores;
-	}
-
-	public void setEnderecoTipoValores(TipoEnderecoEnum[] enderecoTipoValores) {
-		this.enderecoTipoValores = enderecoTipoValores;
-	}
-
-	public Integer getEnderecoTipoCodigo() {
-		return enderecoTipoCodigo;
-	}
-
-	public void setEnderecoTipoCodigo(Integer enderecoTipoCodigo) {
-		this.enderecoTipoCodigo = enderecoTipoCodigo;
-	}
-
-	public UnidadeFederacaoEnum[] getEnderecoUfValores() {
-		return enderecoUfValores;
-	}
-
-	public void setEnderecoUfValores(UnidadeFederacaoEnum[] enderecoUfValores) {
-		this.enderecoUfValores = enderecoUfValores;
-	}
-
-	public Integer getEnderecoUfCodigo() {
-		return enderecoUfCodigo;
-	}
-
-	public void setEnderecoUfCodigo(Integer enderecoUfCodigo) {
-		this.enderecoUfCodigo = enderecoUfCodigo;
-	}
-
-	public String getEnderecoLogradouro() {
-		return enderecoLogradouro;
-	}
-
-	public void setEnderecoLogradouro(String enderecoLogradouro) {
-		this.enderecoLogradouro = enderecoLogradouro;
-	}
-
-	public String getEnderecoNumeroOuLoteamento() {
-		return enderecoNumeroOuLoteamento;
-	}
-
-	public void setEnderecoNumeroOuLoteamento(String enderecoNumeroOuLoteamento) {
-		this.enderecoNumeroOuLoteamento = enderecoNumeroOuLoteamento;
-	}
-
-	public String getEnderecoLocalidade() {
-		return enderecoLocalidade;
-	}
-
-	public void setEnderecoLocalidade(String enderecoLocalidade) {
-		this.enderecoLocalidade = enderecoLocalidade;
-	}
-
-	public String getEnderecoComplemento() {
-		return enderecoComplemento;
-	}
-
-	public void setEnderecoComplemento(String enderecoComplemento) {
-		this.enderecoComplemento = enderecoComplemento;
-	}
-
-	public String getEnderecoCep() {
-		return enderecoCep;
-	}
-
-	public void setEnderecoCep(String enderecoCep) {
-		this.enderecoCep = enderecoCep;
-	}
-
-	public List<Grupo> getGruposDisponiveis() {
-		return gruposDisponiveis;
-	}
-
-	public void setGruposDisponiveis(List<Grupo> gruposDisponiveis) {
-		this.gruposDisponiveis = gruposDisponiveis;
-	}
-
-	public Long[] getIdsGruposSelecionados() {
-		return idsGruposSelecionados;
-	}
-
-	public void setIdsGruposSelecionados(Long[] idsGruposSelecionados) {
-		this.idsGruposSelecionados = idsGruposSelecionados;
-	}
-*/
 	@PostConstruct
 	public void init() {
-		/*telefoneCategoriaValores = CategoriaTelefoneEnum.values();
-		enderecoCategoriaValores = CategoriaEnderecoEnum.values();
-		enderecoTipoValores = TipoEnderecoEnum.values();
-		enderecoUfValores = UnidadeFederacaoEnum.values();*/
-
-/*		UsuarioLogadoDTO usuarioDto = AutenticadorBB.obterUsuarioLogadoDTODaSessao();*/
-
-		/*gruposDisponiveis = daoGrupo.listarGruposPorUsuario(usuarioDto.getId());*/
+		
+		
 	}
 
 	public void incluir() throws ConfirmacaoDeEmailInvalidaException {
@@ -362,9 +164,7 @@ private String emailConfirmacao;
 		EntityManager em = EMFactorySingleton.obterInstanciaUnica().criarEM();
 
 		daoPaciente = new PacienteDAOImpl(em);
-/*		daoTelefone = new TelefoneDAOImpl(em);
-		daoGrupo = new GrupoDAOImpl(em);
-*/
+
 		try {
 			em.getTransaction().begin();
 
@@ -372,45 +172,22 @@ private String emailConfirmacao;
 			//
 			// Paciente (apenas os atributos básicos)
 			Paciente paciente = criarObjPacienteApartirDaView();
-			/*paciente.setDtInclusao(DataEHoraUtils.hoje());
-*/
+			//paciente.setDtInclusao(DataEHoraUtils.hoje());
+
 			// Usuário logado
-			/*Usuario usuarioLogadoBD = daoUsuario.buscarPor(AutenticadorBB.obterUsuarioLogadoDTODaSessao().getId());
+			Usuario usuarioLogadoBD = daoUsuario.buscarPor(AutenticadorBB.obterUsuarioLogadoDTODaSessao().getId());
 
 			if (usuarioLogadoBD != null)
-				paciente.setPaciente(usuarioLogadoBD);
-*/
-			// Endereço
-			/*Endereco endereco = criarObjEnderecoApartirDaView();
+				paciente.setUsuario(usuarioLogadoBD);
 
-			if (endereco != null)
-				paciente.setEndereco(endereco);*/
-
-			// Telefones
-		/*	List<Telefone> telefones = criarListaTelefonesApartirDaView(paciente);
-
-			// Grupos
-			List<Grupo> gruposSelecionados = criarListaGruposApartirDaView();
-
-			if (gruposSelecionados != null)
-				paciente.setGrupos(gruposSelecionados);*/
+			
 
 			// Persistência
 			//
 			// - paciente com usuário (e/ou endereço e/ou grupos)
 			paciente = daoPaciente.inserir(paciente);
 
-			// - telefones do paciente
-		/*	if (telefones != null) {
-				for (Iterator<Telefone> iterator = telefones.iterator(); iterator.hasNext();) {
-					Telefone telefone = (Telefone) iterator.next();
 
-					daoTelefone.inserir(telefone);
-				}*/
-
-		/*		paciente.setTelefones(telefones);
-			}
-*/
 			if (em.getTransaction().isActive())
 				em.getTransaction().commit();
 		} catch (Exception e) {
@@ -431,49 +208,7 @@ private String emailConfirmacao;
 		inicializaDAOsValorPadrao();
 	}
 
-	/*private List<Grupo> criarListaGruposApartirDaView() {
-		List<Grupo> gruposSelecionados = null;
-
-		Long[] idsDosGrupos = this.idsGruposSelecionados;
-
-		if (idsDosGrupos != null) {
-
-			gruposSelecionados = new ArrayList<Grupo>(idsDosGrupos.length);
-
-			for (int i = 0; i < idsDosGrupos.length; i++) {
-
-				Grupo grupo = daoGrupo.buscarPor(idsDosGrupos[i]);
-
-				gruposSelecionados.add(grupo);
-			}
-		}
-
-		return gruposSelecionados;
-	}
-
-	private List<Telefone> criarListaTelefonesApartirDaView(Paciente paciente) {
-		List<Telefone> telefones = null;
-
-		if (this.itensTelefoneListaDto != null) {
-			for (Iterator<ItemListaTelefoneDTO> iterator = itensTelefoneListaDto.iterator(); iterator.hasNext();) {
-				ItemListaTelefoneDTO telefoneDto = (ItemListaTelefoneDTO) iterator.next();
-
-				Telefone novoTel = new Telefone(telefoneDto.getCodigoArea(), telefoneDto.getDdd(),
-						telefoneDto.getNumero(),
-						CategoriaTelefoneEnum.codigoIntParaEnum(telefoneDto.getCategoriaCodigo()));
-
-				novoTel.setPaciente(paciente);
-
-				if (telefones == null)
-					telefones = new ArrayList<Telefone>();
-
-				telefones.add(novoTel);
-			}
-		}
-
-		return telefones;
-	}
-*/
+	
 	private Paciente criarObjPacienteApartirDaView() {
 		Paciente paciente;
 
@@ -482,71 +217,7 @@ private String emailConfirmacao;
 		return paciente;
 	}
 
-	/*private Endereco criarObjEnderecoApartirDaView() {
-		Endereco endereco = null;
-
-		if (enderecoTipoCodigo != null) {
-			if (endereco == null)
-				endereco = new Endereco();
-
-			endereco.setTipo(TipoEnderecoEnum.codigoIntParaEnum(this.enderecoTipoCodigo));
-		}
-
-		if (enderecoLogradouro != null) {
-			if (endereco == null)
-				endereco = new Endereco();
-
-			endereco.setLogradouro(enderecoLogradouro);
-		}
-
-		if (enderecoNumeroOuLoteamento != null) {
-			if (endereco == null)
-				endereco = new Endereco();
-
-			endereco.setNumeroOuLoteamento(enderecoNumeroOuLoteamento);
-		}
-
-		if (enderecoComplemento != null) {
-			if (endereco == null)
-				endereco = new Endereco();
-
-			endereco.setComplemento(enderecoComplemento);
-		}
-
-		if (enderecoLocalidade != null) {
-			if (endereco == null)
-				endereco = new Endereco();
-
-			endereco.setLocalidade(enderecoLocalidade);
-		}
-
-		if (enderecoUfCodigo != null) {
-			if (endereco == null)
-				endereco = new Endereco();
-
-			endereco.setUf(UnidadeFederacaoEnum.codigoIntParaEnum(enderecoUfCodigo));
-		}
-
-		if (enderecoCep != null) {
-			if (endereco == null)
-				endereco = new Endereco();
-
-			// "apaga" o "-" da inserido pela mascara
-			enderecoCep = enderecoCep.replaceAll("-", "");
-
-			endereco.setCep(enderecoCep);
-		}
-
-		if (enderecoCategoriaCodigo != null) {
-			if (endereco == null)
-				endereco = new Endereco();
-
-			endereco.setCategoria(CategoriaEnderecoEnum.codigoIntParaEnum(enderecoCategoriaCodigo));
-		}
-
-		return endereco;
-	}
-*/
+	
 	private void validarPreenchimentoEmail()
 			throws CamposObrigatoriosNaoInformadosException, ConfirmacaoDeEmailInvalidaException {
 		if (!StringsUtils.ehStringVazia(email)) {
@@ -584,44 +255,7 @@ private String emailConfirmacao;
 			this.dtNascimento = paciente.getDtNascimento();
 			this.ehAlteracao = true;
 
-			/*for (Telefone telCadastrado : paciente.getTelefones()) {
-
-				ItemListaTelefoneDTO dto = new ItemListaTelefoneDTO(sequencia++, telCadastrado.getId(),
-						telCadastrado.getCodigoArea(), telCadastrado.getDdd(), telCadastrado.getNumero(),
-						telCadastrado.getCategoria().getCodigo(), telCadastrado.getCategoria().getDescricao());
-
-				this.getItensTelefoneListaDto().add(dto);
-			}
-
-			if (contato.getEndereco() != null) {
-				if (contato.getEndereco().getCategoria() != null)
-					this.enderecoCategoriaCodigo = contato.getEndereco().getCategoria().getCodigo();
-
-				this.enderecoCep = contato.getEndereco().getCep();
-				this.enderecoComplemento = contato.getEndereco().getComplemento();
-				this.enderecoLocalidade = contato.getEndereco().getLocalidade();
-				this.enderecoLogradouro = contato.getEndereco().getLogradouro();
-				this.enderecoNumeroOuLoteamento = contato.getEndereco().getNumeroOuLoteamento();
-
-				if (contato.getEndereco().getTipo() != null)
-					this.enderecoTipoCodigo = contato.getEndereco().getTipo().getCodigo();
-
-				if (contato.getEndereco().getUf() != null)
-					this.enderecoUfCodigo = contato.getEndereco().getUf().getCodigo();
-			}
-
-			if (contato.getGrupos() != null) {
-
-				this.idsGruposSelecionados = new Long[contato.getGrupos().size()];
-
-				int i = 0;
-
-				for (Grupo grupo : contato.getGrupos()) {
-					idsGruposSelecionados[i] = grupo.getId();
-
-					i++;
-				}
-			}*/
+		
 		}
 	}
 
@@ -629,7 +263,7 @@ private String emailConfirmacao;
 		try {
 			validarCamposObrigatorios();
 
-		/*	validarPreenchimentoEmail();*/
+			validarPreenchimentoEmail();
 
 			alterarObjeto();
 
@@ -649,9 +283,7 @@ private String emailConfirmacao;
 		EntityManager em = EMFactorySingleton.obterInstanciaUnica().criarEM();
 
 		daoPaciente = new PacienteDAOImpl(em);
-		/*daoTelefone = new TelefoneDAOImpl(em);
-		daoGrupo = new GrupoDAOImpl(em);
-*/
+
 		try {
 			em.getTransaction().begin();
 
@@ -661,52 +293,11 @@ private String emailConfirmacao;
 			paciente.setEmail(email);
 			paciente.setDtNascimento(dtNascimento);
 
-		/*	Endereco enderecoTela = criarObjEnderecoApartirDaView();*/
 
-		/*	if (enderecoTela != null) {
-				if (paciente.getEndereco() == null) {
-					paciente.setEndereco(enderecoTela);
-				} else {
-					paciente.getEndereco().setCategoria(enderecoTela.getCategoria());
-					paciente.getEndereco().setCep(enderecoTela.getCep());
-					paciente.getEndereco().setComplemento(enderecoTela.getComplemento());
-					paciente.getEndereco().setLocalidade(enderecoTela.getLocalidade());
-					paciente.getEndereco().setLogradouro(enderecoTela.getLogradouro());
-					paciente.getEndereco().setNumeroOuLoteamento(enderecoTela.getNumeroOuLoteamento());
-					paciente.getEndereco().setTipo(enderecoTela.getTipo());
-					paciente.getEndereco().setUf(enderecoTela.getUf());
-				}
-			} else {
-				paciente.setEndereco(null);
-			}
-
-			if (this.idsGruposSelecionados != null) {
-				List<Grupo> grupoSelecionados = new ArrayList<Grupo>(idsGruposSelecionados.length);
-
-				for (int i = 0; i < idsGruposSelecionados.length; i++) {
-					Long idGrupo = idsGruposSelecionados[i];
-
-					Grupo grupo = daoGrupo.buscarPor(idGrupo);
-
-					grupoSelecionados.add(grupo);
-				}
-
-				if (paciente.getGrupos() != null)
-					paciente.getGrupos().clear();
-
-				paciente.setGrupos(grupoSelecionados);
-			} else {
-				if (paciente.getGrupos() != null)
-					paciente.getGrupos().clear();
-			}
-*/
 			paciente = daoPaciente.alterar(paciente);
 
-		/*	trataExclusaoTelefones(paciente);
-
-			trataInclusaoOuAlteracaoTelefones(paciente);
-
-*/			if (em.getTransaction().isActive())
+	
+			if (em.getTransaction().isActive())
 				em.getTransaction().commit();
 		} catch (Exception e) {
 
@@ -728,221 +319,12 @@ private String emailConfirmacao;
 
 	private void inicializaDAOsValorPadrao() {
 		daoPaciente = new PacienteDAOImpl();
-		/*daoTelefone = new TelefoneDAOImpl();
-		daoGrupo = new GrupoDAOImpl();*/
+		
 	}
 
 	private void anulaAsDAOs() {
 		daoPaciente = null;
-	/*	daoTelefone = null;
-		daoGrupo = null;*/
-	}
-/*
-	private void trataInclusaoOuAlteracaoTelefones(paciente paciente) {
-		List<ItemListaTelefoneDTO> telefonesInseridosOuAlterados = this.itensTelefoneListaDto;
 
-		for (Iterator<ItemListaTelefoneDTO> iterator = telefonesInseridosOuAlterados.iterator(); iterator.hasNext();) {
-			ItemListaTelefoneDTO itemDto = (ItemListaTelefoneDTO) iterator.next();
-
-			if (itemDto.getEhInserir()) {
-				Telefone telNovo = new Telefone(itemDto.getCodigoArea(), itemDto.getDdd(), itemDto.getNumero(),
-						CategoriaTelefoneEnum.codigoIntParaEnum(itemDto.getCategoriaCodigo()));
-
-				telNovo.setpaciente(paciente);
-
-				if (paciente.getTelefones() == null)
-					paciente.setTelefones(new ArrayList<Telefone>());
-
-				paciente.getTelefones().add(telNovo);
-
-				daoTelefone.inserir(telNovo);
-			} else if (itemDto.getEhAlterar()) {
-				boolean achou = false;
-
-				List<Telefone> telefones = paciente.getTelefones();
-
-				for (Iterator<Telefone> iterator2 = telefones.iterator(); iterator2.hasNext() && !achou;) {
-					Telefone telefone = (Telefone) iterator2.next();
-
-					if (telefone.getId().longValue() == itemDto.getIdTelefone().longValue()) {
-						achou = true;
-
-						telefone.setCodigoArea(itemDto.getCodigoArea());
-						telefone.setDdd(itemDto.getDdd());
-						telefone.setNumero(itemDto.getNumero());
-						telefone.setCategoria(CategoriaTelefoneEnum.codigoIntParaEnum(itemDto.getCategoriaCodigo()));
-
-						daoTelefone.alterar(telefone);
-					}
-				}
-			}
-		}*/
-	
-
-/*	private void trataExclusaoTelefones(paciente paciente) {
-		List<Telefone> telefonesBD = paciente.getTelefones();
-
-		List<ItemListaTelefoneDTO> telefonesAExcluir = this.itensTelefoneListaDtoExcluidos;
-
-		if (telefonesAExcluir != null && telefonesAExcluir.size() > 0) {
-			for (Iterator<ItemListaTelefoneDTO> iterator = telefonesAExcluir.iterator(); iterator.hasNext();) {
-				ItemListaTelefoneDTO itemDto = (ItemListaTelefoneDTO) iterator.next();
-
-				for (Iterator<Telefone> iterator2 = telefonesBD.iterator(); iterator2.hasNext();) {
-					Telefone telefoneBD = (Telefone) iterator2.next();
-
-					if (itemDto.getIdTelefone().longValue() == telefoneBD.getId().longValue()) {
-						iterator2.remove();
-						daoTelefone.deletar(telefoneBD);
-					}
-				}
-			}
-		}
-	}*/
-
-/*	public void incluirTelefone() {
-
-		try {
-			validarCamposObrigatoriosTelefone();
-
-			CategoriaTelefoneEnum categoriaTelefone = CategoriaTelefoneEnum
-					.codigoIntParaEnum(telefoneCategoriaCodigo.intValue());
-
-			ItemListaTelefoneDTO itemTelDto = new ItemListaTelefoneDTO(sequencia++, null, telefoneCodigoArea,
-					telefoneDdd, telefoneNumero, telefoneCategoriaCodigo.intValue(), categoriaTelefone.getDescricao());
-
-			itemTelDto.setEhInserir(true);
-			itemTelDto.setEhAlterar(false);
-
-			this.getItensTelefoneListaDto().add(itemTelDto);
-
-			this.telefoneCodigoArea = null;
-			this.telefoneDdd = null;
-			this.telefoneNumero = null;
-			this.telefoneCategoriaCodigo = null;
-		} catch (CamposObrigatoriosNaoInformadosException | TamanhoCampoInvalidoException
-				| CategoriaTelefoneEnumInvalidaException e) {
-
-			MensagensJSFUtils.adicionarMsgErro(e.getMessage(), "");
-		} catch (Exception e) {
-
-			MensagensJSFUtils.msgELogDeERROInternoEOuSistema(logger, e);
-		}
 	}
 
-	private void validarCamposObrigatoriosTelefone() throws CamposObrigatoriosNaoInformadosException,
-			TamanhoCampoInvalidoException, CategoriaTelefoneEnumInvalidaException {
-		if (telefoneNumero == null)
-			throw new CamposObrigatoriosNaoInformadosException("telefones/número");
-
-		if (String.valueOf(telefoneNumero).length() < 8)
-			throw new TamanhoCampoInvalidoException("Telefones/número", 8, 0);
-
-		if (String.valueOf(telefoneNumero).length() > 9)
-			throw new TamanhoCampoInvalidoException("Telefones/número", 0, 9);
-
-		if (telefoneCategoriaCodigo == null)
-			throw new CategoriaTelefoneEnumInvalidaException();
-
-		CategoriaTelefoneEnum categoriaTelefone = CategoriaTelefoneEnum
-				.codigoIntParaEnum(telefoneCategoriaCodigo.intValue());
-
-		if (categoriaTelefone == null)
-			throw new CategoriaTelefoneEnumInvalidaException();
-	}
-
-	public void alterarTelefone() {
-		try {
-			validarCamposObrigatoriosTelefone();
-
-			CategoriaTelefoneEnum categoriaTelefone = CategoriaTelefoneEnum
-					.codigoIntParaEnum(telefoneCategoriaCodigo.intValue());
-
-			ItemListaTelefoneDTO dto = obterItemListaTelefoneDtoAPartirTelefoneIndex();
-
-			if (dto != null) {
-				dto.setEhInserir(false);
-				dto.setEhAlterar(true);
-
-				dto.setCodigoArea(telefoneCodigoArea);
-				dto.setDdd(telefoneDdd);
-				dto.setNumero(telefoneNumero);
-				dto.setCategoriaCodigo(telefoneCategoriaCodigo);
-				dto.setCategoriaDescricao(categoriaTelefone.getDescricao());
-			}
-
-			this.telefoneCodigoArea = null;
-			this.telefoneDdd = null;
-			this.telefoneNumero = null;
-			this.telefoneCategoriaCodigo = null;
-
-			this.telefoneIndex = null;
-		} catch (CamposObrigatoriosNaoInformadosException | TamanhoCampoInvalidoException
-				| CategoriaTelefoneEnumInvalidaException e) {
-
-			MensagensJSFUtils.adicionarMsgErro(e.getMessage(), "");
-		} catch (Exception e) {
-
-			MensagensJSFUtils.msgELogDeERROInternoEOuSistema(logger, e);
-		}
-	}
-
-	public void carregarTelefoneParaAlteracao(Integer sequencia) throws IdTelefoneInvalidoException {
-		this.telefoneIndex = sequencia;
-
-		ItemListaTelefoneDTO dto = obterItemListaTelefoneDtoAPartirTelefoneIndex();
-
-		if (dto != null) {
-			telefoneCodigoArea = dto.getCodigoArea();
-			telefoneDdd = dto.getDdd();
-			telefoneNumero = dto.getNumero();
-			telefoneCategoriaCodigo = dto.getCategoriaCodigo();
-		} else
-			throw new IdTelefoneInvalidoException();
-	}
-
-	private ItemListaTelefoneDTO obterItemListaTelefoneDtoAPartirTelefoneIndex() {
-		ItemListaTelefoneDTO dto = null;
-
-		for (Iterator<ItemListaTelefoneDTO> iterator = itensTelefoneListaDto.iterator(); iterator.hasNext()
-				&& dto == null;) {
-			ItemListaTelefoneDTO itemLista = (ItemListaTelefoneDTO) iterator.next();
-
-			if (itemLista.getSequencia().intValue() == this.telefoneIndex.intValue())
-				dto = itemLista;
-		}
-		return dto;
-	}
-
-	public void excluirTelefone(Integer sequencia) throws IdTelefoneInvalidoException {
-		this.telefoneIndex = sequencia;
-
-		ItemListaTelefoneDTO dto = obterItemListaTelefoneDtoAPartirTelefoneIndex();
-
-		if (dto == null)
-			throw new IdTelefoneInvalidoException();
-
-		dto.setEhInserir(false);
-		dto.setEhAlterar(false);
-
-		this.getItensTelefoneListaDto().remove(dto);
-
-		if (this.ehAlteracao)
-			this.getItensTelefoneListaDtoExcluidos().add(dto);
-
-		this.telefoneIndex = null;
-	}
-
-	public List<ItemListaTelefoneDTO> getItensTelefoneListaDtoExcluidos() {
-		if (itensTelefoneListaDtoExcluidos == null)
-			this.setItensTelefoneListaDtoExcluidos(new ArrayList<ItemListaTelefoneDTO>());
-
-		return itensTelefoneListaDtoExcluidos;
-	}
-
-	public void setItensTelefoneListaDtoExcluidos(List<ItemListaTelefoneDTO> itensTelefoneListaDtoExcluidos) {
-		this.itensTelefoneListaDtoExcluidos = itensTelefoneListaDtoExcluidos;
-	}
-
-}*/
 }

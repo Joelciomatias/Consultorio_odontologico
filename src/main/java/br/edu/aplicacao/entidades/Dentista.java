@@ -140,11 +140,11 @@ public class Dentista {
 		this.usuario = usuario;
 	}
 
-	public String getTelefones() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefones(String telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 	

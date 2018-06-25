@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import br.edu.aplicacao.backingbeans.AutenticadorBB;
 import br.edu.aplicacao.dtos.UsuarioLogadoDTO;
-import br.edu.aplicacao.entidades.Contato;
+import br.edu.aplicacao.entidades.Dentista;
 import br.edu.aplicacao.entidades.Usuario;
 import br.edu.aplicacao.exceptions.AlteracaoPerfilAdmInvalidaException;
 import br.edu.aplicacao.exceptions.CamposObrigatoriosNaoInformadosException;

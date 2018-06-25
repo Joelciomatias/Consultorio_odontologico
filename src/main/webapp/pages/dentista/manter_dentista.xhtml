@@ -8,18 +8,18 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf" >
 	
 	<ui:composition template="/pages/templates/layout.xhtml">
-	   	<ui:param name="activeSubmenu" value="paciente"/>
+	   	<ui:param name="activeSubmenu" value="contato"/>
     	<ui:param name="activeMenu" value="agenda"/>
     	
     	<f:metadata>
-        	<f:viewAction action="#{manterPacienteBB.prepararAlteracao(param.idPacientePesquisa)}" />
+        	<f:viewAction action="#{manterDentistaBB.prepararAlteracao(param.idDentistaPesquisa)}" />
     	</f:metadata>
     	    	
 		<ui:define name="breadcrumb">		
 		   <li>		   
 		  		<span>        			
-		  			<h:outputText value="Pacientes/Alterar Paciente" rendered="#{manterPacienteBB.ehAlteracao}" />
-        			<h:outputText value="Pacientes/Incluir Paciente" rendered="#{!manterPacienteBB.ehAlteracao}" />
+		  			<h:outputText value="Dentistas/Alterar Dentista" rendered="#{manterDentistaBB.ehAlteracao}" />
+        			<h:outputText value="Dentistas/Incluir Dentista" rendered="#{!manterDentistaBB.ehAlteracao}" />
         	 	</span> 
 		   </li>          
 		</ui:define>
@@ -30,8 +30,8 @@
 					<div class="box-header with-border">
 						<div class="col-xs-6 col-sm-3">
 							<h3 class="box-title">
-								<h:outputText value="Alterar Paciente" rendered="#{manterPacienteBB.ehAlteracao}" />
-       							<h:outputText value="Incluir Paciente" rendered="#{!manterPacienteBB.ehAlteracao}" />
+								<h:outputText value="Alterar Dentista" rendered="#{manterDentistaBB.ehAlteracao}" />
+       							<h:outputText value="Incluir Dentista" rendered="#{!manterDentistaBB.ehAlteracao}" />
 							</h3>
 						</div>	
 						<div class="box-tools pull-right">
@@ -40,7 +40,7 @@
 					</div>
 
 					<div class="form-group col-md-12">
-						<p:inputText type="hidden" id="id" value="#{manterPacienteBB.id}" />
+						<p:inputText type="hidden" id="id" value="#{manterDentistaBB.id}" />
 					</div>
 
 					<!-- Campo: nome -->
@@ -48,7 +48,7 @@
 						<p:outputLabel for="nome" value="Nome" indicateRequired="true" />
 
 						<p:inputText 
-							value="#{manterPacienteBB.nome}"							
+							value="#{manterDentistaBB.nome}"							
 							id="nome" 
 							required="true" 
 							maxlength="150"
@@ -62,7 +62,7 @@
 
 						<!-- Fonte: https://www.mkyong.com/jsf2/primefaces/primefaces-jsf-email-validator-example/ -->
 						<p:inputText
-							value="#{manterPacienteBB.email}" 
+							value="#{manterDentistaBB.email}" 
 							id="email"							 
 							required="false"
 							maxlength="70"							
@@ -76,12 +76,12 @@
 						</p:inputText>
 					</div>
 					
-				 	<div class="form-group col-md-3">
+					<div class="form-group col-md-3">
 						<p:outputLabel for="emailConfirmacao" value="Email (confirmação)" indicateRequired="false" />
 
-					<!-- 	Fonte: https://www.mkyong.com/jsf2/primefaces/primefaces-jsf-email-validator-example/ -->
+						<!-- Fonte: https://www.mkyong.com/jsf2/primefaces/primefaces-jsf-email-validator-example/ -->
 						<p:inputText
-							value="#{manterPacienteBB.emailConfirmacao}" 
+							value="#{manterDentistaBB.emailConfirmacao}" 
 							id="emailConfirmacao"							 
 							required="false"
 							maxlength="70"							
@@ -93,14 +93,14 @@
 								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" 
 							/>
 						</p:inputText>
-					</div> 
+					</div>
 					
 					<!-- Campo: dt nascimento -->
 					<div class="form-group col-md-3">						
 						<p:outputLabel for="dtNascimento" value="Data de Nascimento" indicateRequired="false" />
 
 						<p:calendar 
-							value="#{manterPacienteBB.dtNascimento}"
+							value="#{manterDentistaBB.dtNascimento}"
 							id="dtNascimento"
 							required="false"  
 							pattern="dd/MM/yyyy" 
@@ -109,32 +109,71 @@
 							styleClass="form-control"
 							style="border-color: transparent !important; padding-left: 0px !important;"															
 						/>
-							</div> 
-				
-					<!--	Botões de ação - Paciente
+					</div>
+
+					<!-- Campo: telefone -->
+					<div class="form-group col-md-3">
+						<p:outputLabel for="telefone" value="Telefone" indicateRequired="false" />
+
+						<p:inputText 
+							value="#{manterDentistaBB.telefone}"							
+							id="telefone" 
+							required="false" 
+							maxlength="150"
+							styleClass="form-control" 
+						/>							
+					</div>
+					
+						<!-- Campo: endereco -->
+					<div class="form-group col-md-3">
+						<p:outputLabel for="endereco" value="Endereco" indicateRequired="false" />
+
+						<p:inputText 
+							value="#{manterDentistaBB.endereco}"							
+							id="endereco" 
+							required="false" 
+							maxlength="150"
+							styleClass="form-control" 
+						/>							
+					</div>
+					
+						<!-- Campo: cro -->
+					<div class="form-group col-md-3">
+						<p:outputLabel for="cro" value="cro" indicateRequired="false" />
+
+						<p:inputText 
+							value="#{manterDentistaBB.cro}"							
+							id="cro" 
+							required="false" 
+							maxlength="11"
+							styleClass="form-control" 
+						/>							
+					</div>
+		
+					<!--	Botões de ação - Dentista
 							=====================================================================================						 	
 					-->
 					<div 
 						class="box-footer align-center with-border"
-						jsf:rendered="#{!manterPacienteBB.ehAlteracao}"
+						jsf:rendered="#{!manterDentistaBB.ehAlteracao}"
 						>
 											
 						<p:commandButton 
 							value="Incluir" 
-							title="Incluir Paciente"
-							actionListener="#{manterPacienteBB.incluir()}" 
+							title="Incluir Dentista"
+							actionListener="#{manterDentistaBB.incluir()}" 
 							styleClass="btn btn-primary" 
 						/>
 					</div>					
 					<div 
 						class="box-footer align-center with-border" 
-						jsf:rendered="#{manterPacienteBB.ehAlteracao}"
+						jsf:rendered="#{manterDentistaBB.ehAlteracao}"
 						>
 											
 						<p:commandButton 
 							value="Alterar" 
 							title="Salvar Alteração"
-							actionListener="#{manterPacienteBB.salvarAlteracao()}" 
+							actionListener="#{manterDentistaBB.salvarAlteracao()}" 
 							styleClass="btn btn-primary" 
 						/>
 					</div>				

@@ -116,8 +116,12 @@ public class InicializadorBDEmMemoria {
 
 	private void preparaCadastroDePaciente() throws ParseException {
 		Paciente paciente;
-
-		paciente = new Paciente("joao","joao@contato.com.br",DataEHoraUtils.dataHoraStringParaDate("01/06/2018 12:00"));
+		
+		Usuario usuarioadm;
+		// Dono da Lista = ADM
+		usuarioadm = daoUsuario.buscarPor(1L);
+		paciente = new Paciente("joao","joao@contato.com.br",
+				DataEHoraUtils.dataHoraStringParaDate("01/06/2018 12:00"),usuarioadm);
 		
 		daoPaciente.inserir(paciente);	
 		
@@ -128,7 +132,6 @@ public class InicializadorBDEmMemoria {
 		Dentista dentista;
 		
 		Usuario usuarioadm;		
-		Contato contato;
 		
 		// Dono da Lista = ADM
 		usuarioadm = daoUsuario.buscarPor(1L);
