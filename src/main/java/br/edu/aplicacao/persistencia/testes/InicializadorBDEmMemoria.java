@@ -8,7 +8,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import com.ibm.icu.text.DateFormat;
-
+import br.edu.aplicacao.entidades.Pessoa;
 import br.edu.aplicacao.entidades.Contato;
 import br.edu.aplicacao.entidades.Endereco;
 import br.edu.aplicacao.entidades.Grupo;
@@ -22,6 +22,7 @@ import br.edu.aplicacao.enums.TipoEnderecoEnum;
 import br.edu.aplicacao.enums.UnidadeFederacaoEnum;
 import br.edu.aplicacao.persistencia.interfaces.IContatoDAO;
 import br.edu.aplicacao.persistencia.interfaces.IPacienteDAO;
+import br.edu.aplicacao.persistencia.interfaces.IPessoaDAO;
 import br.edu.aplicacao.persistencia.interfaces.IDentistaDAO;
 import br.edu.aplicacao.persistencia.interfaces.IGrupoDAO;
 import br.edu.aplicacao.persistencia.interfaces.ITelefoneDAO;
@@ -29,6 +30,7 @@ import br.edu.aplicacao.persistencia.interfaces.IUsuarioDAO;
 import br.edu.aplicacao.persistencia.interfaces.impl.ContatoDAOImpl;
 import br.edu.aplicacao.persistencia.interfaces.impl.DentistaDAOImpl;
 import br.edu.aplicacao.persistencia.interfaces.impl.PacienteDAOImpl;
+import br.edu.aplicacao.persistencia.interfaces.impl.PessoaDAOImpl;
 import br.edu.aplicacao.persistencia.interfaces.impl.GrupoDAOImpl;
 import br.edu.aplicacao.persistencia.interfaces.impl.TelefoneDAOImpl;
 import br.edu.aplicacao.persistencia.interfaces.impl.UsuarioDAOImpl;
@@ -49,6 +51,8 @@ public class InicializadorBDEmMemoria {
 	
 	private IPacienteDAO daoPaciente;
 	
+	private IPessoaDAO daoPessoa;
+	
 	private EntityManager em;
 	
 	public InicializadorBDEmMemoria() throws ParseException {
@@ -61,6 +65,7 @@ public class InicializadorBDEmMemoria {
 		daoTelefone = new TelefoneDAOImpl(em);
 		daoGrupo = new GrupoDAOImpl(em);
 		daoPaciente = new PacienteDAOImpl(em);
+		daoPessoa = new PessoaDAOImpl(em);
 		daoDentista = new DentistaDAOImpl(em);
 		
 		try {
@@ -86,6 +91,8 @@ public class InicializadorBDEmMemoria {
 						
 			preparaCadastroDePaciente();
 			
+			preparaCadastroDePessoa();
+			
 			preparaCadastroDeDentista();
 			
 			if(em.getTransaction().isActive())
@@ -107,6 +114,21 @@ public class InicializadorBDEmMemoria {
 				em.close();
 			}
 		}		
+	}
+
+	private void preparaCadastroDePessoa() throws ParseException {
+		
+	Pessoa pessoa;
+		
+		Usuario usuarioadm;
+		// Dono da Lista = ADM
+		usuarioadm = daoUsuario.buscarPor(1L);
+		pessoa = new Pessoa("joao",DataEHoraUtils.dataHoraStringParaDate("01/06/2018 12:00"),"Masculino",usuarioadm);
+		
+		daoPessoa.inserir(pessoa);	
+		
+		em.flush();
+		
 	}
 
 	private void listarTodosPacientes() {
