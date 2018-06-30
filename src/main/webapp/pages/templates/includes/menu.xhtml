@@ -62,7 +62,7 @@
 							<i class="fa fa-user-md"></i>Dentistas
 						</p:link>
 					</li>					
-				</ul>								
+				</ul>						
 			</li>
 			
 			<!-- Menu: Agenda -->
@@ -114,6 +114,15 @@
 					<i class="fa fa-power-off"></i><span>Sair</span> 
 				</h:commandLink>
 			</li>
+			
+			
+			<li class="treeview-menu" jsf:rendered="#{autenticadorBB.ehAdministradorUsuarioLogado}">
+					<li class="#{activeSubmenu eq 'usuario' ? 'active' : ''}" >
+						<p:link href="/pages/pessoa/pesquisar_pessoa.jsf" ajax="false">
+							<i class="fa fa-file-powerpoint-o"></i>Pessoa (ProgVisual)
+						</p:link>
+					</li>					
+				</li>	
 		</ul>
 	</h:form>
 </ui:composition>
