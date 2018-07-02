@@ -52,26 +52,12 @@ public class Dentista {
 	@Column(name = "dent_cro", length=11, nullable=true)
 	private String cro;
 	
+	@OneToMany(mappedBy = "dentista", fetch=FetchType.LAZY)
+	private List<Consulta> consultas;
+	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "fk_usuario", referencedColumnName = "id_usuario", nullable = false)
 	private Usuario usuario;	
-
-/*	@OneToMany(mappedBy = "contato", fetch=FetchType.LAZY)
-	private List<Telefone> telefones;
-	
-	@OneToOne(cascade=CascadeType.ALL, orphanRemoval=true)
-	@JoinColumn(name = "fk_endereco", referencedColumnName = "id_endereco", nullable = true)
-	private Endereco endereco;
-
-	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(	
-		name="tb_contato_grupo",
-		joinColumns=
-			@JoinColumn(name="fk_contato", referencedColumnName="id_contato"),
-		inverseJoinColumns=
-			@JoinColumn(name="fk_grupo", referencedColumnName="id_grupo")
-    )
-	private List<Grupo> grupos;*/
 	
 	@Column(name = "dt_inclusao", nullable=true)
 	private Date dtInclusao;
@@ -139,7 +125,15 @@ public class Dentista {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
+	public List<Consulta> getConsultas() {
+		return consultas;
+	}
 
+	public void setConsultas(List<Consulta> consultas) {
+		this.consultas = consultas;
+	}
+	
 	public String getTelefone() {
 		return telefone;
 	}
