@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /** 
- 
+ Class criada para a prova de programação visual.
  *
  */
 @Entity
@@ -25,7 +25,7 @@ public class Pessoa {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name = "nome", length=150, nullable=false)
+	@Column(name = "nome", length=150, nullable=false, unique=true)
 	private String nome;
 	
 	@Column(name = "genero", length=70, nullable=false)

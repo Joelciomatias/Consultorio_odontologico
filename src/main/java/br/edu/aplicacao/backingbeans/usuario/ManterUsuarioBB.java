@@ -36,20 +36,20 @@ import br.edu.javaee.web.utils.MensagensJSFUtils;
 public class ManterUsuarioBB implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private IUsuarioDAO dao = new UsuarioDAOImpl();
-	
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
-	private Long id;	
-	private String login;	
-	private String senha;	
+
+	private Long id;
+	private String login;
+	private String senha;
 	private String senhaConfirmacao;
-	private String nome;	
+	private String nome;
 	private Boolean ehAdministrador;
 
 	private Boolean ehAlteracaoPerfil = false;
-	
+
 	public ManterUsuarioBB() {
 	}
 
@@ -92,7 +92,7 @@ public class ManterUsuarioBB implements Serializable {
 	public void setEhAdministrador(Boolean ehAdministrador) {
 		this.ehAdministrador = ehAdministrador;
 	}
-		
+
 	public String getSenhaConfirmacao() {
 		return senhaConfirmacao;
 	}
@@ -100,7 +100,7 @@ public class ManterUsuarioBB implements Serializable {
 	public void setSenhaConfirmacao(String senhaConfirmacao) {
 		this.senhaConfirmacao = senhaConfirmacao;
 	}
-	
+
 	public Boolean getEhAlteracaoPerfil() {
 		return ehAlteracaoPerfil;
 	}
@@ -113,90 +113,87 @@ public class ManterUsuarioBB implements Serializable {
 
 		try {
 			validarCamposObrigatorios();
-			
+
 			validarLoginJahCadastradoInclusao();
-			
+
 			validarPreenchimentoSenha();
-			
+
 			incluirObjeto();
-		
+
 			MensagensJSFUtils.adicionarMsgInfo("Usuário incluído com sucesso", "");
-		} catch (
-				CamposObrigatoriosNaoInformadosException | 
-				ConfirmacaoSenhaInvalidaException |
-				LoginJahCadastradoException |
-				TamanhoSenhaInvalidoException e) {
-			
+		} catch (CamposObrigatoriosNaoInformadosException | ConfirmacaoSenhaInvalidaException
+				| LoginJahCadastradoException | TamanhoSenhaInvalidoException e) {
+
 			MensagensJSFUtils.adicionarMsgErro(e.getMessage(), "");
 		} catch (Exception e) {
 
-			MensagensJSFUtils.msgELogDeERROInternoEOuSistema(logger, e);		
+			MensagensJSFUtils.msgELogDeERROInternoEOuSistema(logger, e);
 		}
 	}
 
 	public void salvarAlteracaoPerfil() {
-		
+
 		try {
 			alterarPerfilObjeto();
-			
+
 			MensagensJSFUtils.adicionarMsgInfo("Usuário alterado com sucesso", "");
 		} catch (Exception e) {
 
-			MensagensJSFUtils.msgELogDeERROInternoEOuSistema(logger, e);		
+			MensagensJSFUtils.msgELogDeERROInternoEOuSistema(logger, e);
 		}
 	}
 
 	private void alterarPerfilObjeto() {
 		dao = null;
-		
+
 		EntityManager em = EMFactorySingleton.obterInstanciaUnica().criarEM();
-		
+
 		dao = new UsuarioDAOImpl(em);
 
 		try {
 			em.getTransaction().begin();
-			
+
 			Usuario usuario = dao.buscarPor(id);
-			
+
 			usuario.setEhAdministrador(ehAdministrador);
-			
+
 			dao.alterar(usuario);
-			
-			if(em.getTransaction().isActive())
+
+			if (em.getTransaction().isActive())
 				em.getTransaction().commit();
-			
+
 		} catch (Exception e) {
-			
+
 			try {
-				if(em.getTransaction().isActive())
-					em.getTransaction().rollback();	
+				if (em.getTransaction().isActive())
+					em.getTransaction().rollback();
 			} catch (Exception e2) {
 				throw e2;
-			}		
-			
-			throw e;			
+			}
+
+			throw e;
 		} finally {
-			if(em != null && em.isOpen())
+			if (em != null && em.isOpen())
 				em.close();
 		}
-		
+
 		dao = new UsuarioDAOImpl();
 	}
-	
+
 	public void prepararAlteracaoPerfil(Long idUsuarioPesquisa) {
-		if(idUsuarioPesquisa != null) {
-						
+		if (idUsuarioPesquisa != null) {
+
 			Usuario usuarioCadastrado = dao.buscarPor(idUsuarioPesquisa);
-			
-			if(usuarioCadastrado == null) {
-				String msgErro = "Código/Id de usuário inválido!"; 
+
+			if (usuarioCadastrado == null) {
+				String msgErro = "Código/Id de usuário inválido!";
 				MensagensJSFUtils.adicionarMsgErro(msgErro, "");
-			
+
 				logger.error(msgErro);
-				
+
 				return;
 			}
-			
+
 			this.id = idUsuarioPesquisa;
 			this.nome = usuarioCadastrado.getNome();
 			this.login = usuarioCadastrado.getLogin();
@@ -206,21 +203,21 @@ public class ManterUsuarioBB implements Serializable {
 			this.ehAlteracaoPerfil = true;
 		}
 	}
-		
+
 	public void prepararAlteracaoMeusDados(Long idUsuario) {
-		if(idUsuario != null) {
-						
+		if (idUsuario != null) {
+
 			Usuario usuarioCadastrado = dao.buscarPor(idUsuario);
-			
-			if(usuarioCadastrado == null) {
-				String msgErro = "Código/Id de usuário inválido!"; 
+
+			if (usuarioCadastrado == null) {
+				String msgErro = "Código/Id de usuário inválido!";
 				MensagensJSFUtils.adicionarMsgErro(msgErro, "");
-			
+
 				logger.error(msgErro);
-				
+
 				return;
 			}
-			
+
 			this.id = idUsuario;
 			this.nome = usuarioCadastrado.getNome();
 			this.login = usuarioCadastrado.getLogin();
@@ -234,209 +231,197 @@ public class ManterUsuarioBB implements Serializable {
 	public String salvarMeusDados() {
 		try {
 			validarCamposObrigatorios();
-			
+
 			validarLoginJahCadastradoMeusDados();
-			
+
 			validarPreenchimentoSenha();
-			
+
 			validarAlteracaoPerfil();
-			
+
 			boolean trocouDeNome = verificarTrocaDeNome();
-			
+
 			alterarObjeto();
-			
-			if(trocouDeNome)
+
+			if (trocouDeNome)
 				tratarTrocaDeNome();
-						
+
 			MensagensJSFUtils.adicionarMsgInfo("Usuário alterado com sucesso", "");
-			
+
 			return "/pages/usuario/meus_dados_usuario.jsf?faces-redirect=true&idUsuario=" + this.id;
-		} catch (
-				CamposObrigatoriosNaoInformadosException | 
-				ConfirmacaoSenhaInvalidaException |
-				LoginJahCadastradoException |
-				TamanhoSenhaInvalidoException |
-				AlteracaoPerfilAdmInvalidaException e) {
-			
+		} catch (CamposObrigatoriosNaoInformadosException | ConfirmacaoSenhaInvalidaException
+				| LoginJahCadastradoException | TamanhoSenhaInvalidoException | AlteracaoPerfilAdmInvalidaException e) {
+
 			MensagensJSFUtils.adicionarMsgErro(e.getMessage(), "");
-			
+
 			return "";
 		} catch (Exception e) {
-			
+
 			MensagensJSFUtils.msgELogDeERROInternoEOuSistema(logger, e);
-			
+
 			return "";
 		}
 	}
-	
+
 	private void tratarTrocaDeNome() {
 		AutenticadorBB.setarUsuarioLogadoDTONaSessao(null);
-		
+
 		Usuario usuarioCadastrado = dao.buscarPor(id);
-		
-		UsuarioLogadoDTO usuarioLogadoDTO = new UsuarioLogadoDTO(
-				usuarioCadastrado.getId(), 
-				usuarioCadastrado.getLogin(),
-				usuarioCadastrado.getNome(),
-				usuarioCadastrado.getEhAdministrador(), 
+
+		UsuarioLogadoDTO usuarioLogadoDTO = new UsuarioLogadoDTO(usuarioCadastrado.getId(),
+				usuarioCadastrado.getLogin(), usuarioCadastrado.getNome(), usuarioCadastrado.getEhAdministrador(),
 				GregorianCalendar.getInstance().getTime());
-		
+
 		AutenticadorBB.setarUsuarioLogadoDTONaSessao(usuarioLogadoDTO);
 	}
 
 	private boolean verificarTrocaDeNome() {
 		Usuario usuarioCadastrado = dao.buscarPor(id);
-		
+
 		return (usuarioCadastrado.getNome().compareTo(nome) != 0);
 	}
 
 	private void validarAlteracaoPerfil() throws AlteracaoPerfilAdmInvalidaException {
 		Usuario usuarioCadastrado = dao.buscarPor(id);
-		
-		if(
-				(usuarioCadastrado.getEhAdministrador() == null && this.ehAdministrador != null)
-				||
-				(usuarioCadastrado.getEhAdministrador() != null && 
-					(usuarioCadastrado.getEhAdministrador() == true && this.ehAdministrador == false)
-					||
-					(usuarioCadastrado.getEhAdministrador() == false && this.ehAdministrador == true)
-				)
-		)
+
+		if ((usuarioCadastrado.getEhAdministrador() == null && this.ehAdministrador != null)
+				|| (usuarioCadastrado.getEhAdministrador() != null
+						&& (usuarioCadastrado.getEhAdministrador() == true && this.ehAdministrador == false)
+						|| (usuarioCadastrado.getEhAdministrador() == false && this.ehAdministrador == true)))
 			throw new AlteracaoPerfilAdmInvalidaException();
 	}
 
 	private void alterarObjeto() {
 		dao = null;
-				
+
 		EntityManager em = EMFactorySingleton.obterInstanciaUnica().criarEM();
-		
+
 		dao = new UsuarioDAOImpl(em);
 
-		try { 
+		try {
 			em.getTransaction().begin();
-			
+
 			Usuario usuario = dao.buscarPor(id);
-			
+
 			usuario.setNome(nome);
 			usuario.setLogin(login);
 			usuario.setSenha(senha);
 			usuario.setEhAdministrador(ehAdministrador);
-			
-			if(em.getTransaction().isActive())
-				em.getTransaction().commit();						
+
+			if (em.getTransaction().isActive())
+				em.getTransaction().commit();
 
 		} catch (Exception e) {
-			
+
 			try {
-				if(em.getTransaction().isActive())
-					em.getTransaction().rollback();	
+				if (em.getTransaction().isActive())
+					em.getTransaction().rollback();
 			} catch (Exception e2) {
 				throw e2;
-			}		
-			
-			throw e;			
+			}
+
+			throw e;
 		} finally {
-			if(em != null && em.isOpen())
+			if (em != null && em.isOpen())
 				em.close();
 		}
-		
-		dao = new UsuarioDAOImpl();		
+
+		dao = new UsuarioDAOImpl();
 	}
 
 	private void validarPreenchimentoSenha() throws ConfirmacaoSenhaInvalidaException, TamanhoSenhaInvalidoException {
-		if(senha.compareTo(senhaConfirmacao) != 0)
+		if (senha.compareTo(senhaConfirmacao) != 0)
 			throw new ConfirmacaoSenhaInvalidaException();
-		
-		if(senha.length() < 3 || senha.length() > 8)
+
+		if (senha.length() < 3 || senha.length() > 8)
 			throw new TamanhoSenhaInvalidoException();
 	}
 
 	private void validarLoginJahCadastradoInclusao() throws LoginJahCadastradoException {
-				
+
 		List<Usuario> resultadoPesquisaLogin = dao.pesquisar(login, null);
-		
-		if(resultadoPesquisaLogin != null && resultadoPesquisaLogin.size() > 0)
-			throw new LoginJahCadastradoException();		
+
+		if (resultadoPesquisaLogin != null && resultadoPesquisaLogin.size() > 0)
+			throw new LoginJahCadastradoException();
 	}
 
 	private void validarLoginJahCadastradoMeusDados() throws LoginJahCadastradoException {
-		
+
 		List<Usuario> resultadoPesquisaLogin = dao.pesquisar(login, null);
-		
-		if(resultadoPesquisaLogin != null && resultadoPesquisaLogin.size() > 1)
-			throw new LoginJahCadastradoException();		
+
+		if (resultadoPesquisaLogin != null && resultadoPesquisaLogin.size() > 1)
+			throw new LoginJahCadastradoException();
 	}
-	
+
 	private void incluirObjeto() {
 		dao = null;
-					
+
 		EntityManager em = EMFactorySingleton.obterInstanciaUnica().criarEM();
-		
+
 		dao = new UsuarioDAOImpl(em);
-				
-		try {		
-			em.getTransaction().begin();	
-			
+
+		try {
+			em.getTransaction().begin();
+
 			Usuario novoUsuario = new Usuario(login, senha, nome, ehAdministrador);
-			
+
 			novoUsuario.setDtInclusao(DataEHoraUtils.hoje());
-			
-			dao.inserir(novoUsuario);	
-			
-			if(em.getTransaction().isActive())
-				em.getTransaction().commit();						
+
+			dao.inserir(novoUsuario);
+
+			if (em.getTransaction().isActive())
+				em.getTransaction().commit();
 		} catch (Exception e) {
-			
+
 			try {
-				if(em.getTransaction().isActive())
-					em.getTransaction().rollback();	
+				if (em.getTransaction().isActive())
+					em.getTransaction().rollback();
 			} catch (Exception e2) {
 				throw e2;
-			}		
-			
-			throw e;			
+			}
+
+			throw e;
 		} finally {
-			if(em != null && em.isOpen())
+			if (em != null && em.isOpen())
 				em.close();
 		}
-		
+
 		dao = new UsuarioDAOImpl();
 	}
 
 	private void validarCamposObrigatorios() throws CamposObrigatoriosNaoInformadosException {
 		List<String> camposNaoInformados = new ArrayList<String>();
 
-		if(StringsUtils.ehStringVazia(nome))
+		if (StringsUtils.ehStringVazia(nome))
 			camposNaoInformados.add("nome");
-		
-		if(StringsUtils.ehStringVazia(login))
+
+		if (StringsUtils.ehStringVazia(login))
 			camposNaoInformados.add("login");
-		
-		if(StringsUtils.ehStringVazia(senha))
+
+		if (StringsUtils.ehStringVazia(senha))
 			camposNaoInformados.add("senha");
-		
-		if(StringsUtils.ehStringVazia(senhaConfirmacao))
+
+		if (StringsUtils.ehStringVazia(senhaConfirmacao))
 			camposNaoInformados.add("senha (confirmação)");
-				
+
 		String listaCamposSepVirgula = "";
-		
-		if(camposNaoInformados.size() > 0) {
-		
+
+		if (camposNaoInformados.size() > 0) {
+
 			int indice = 1;
-			
+
 			for (Iterator<String> iterator = camposNaoInformados.iterator(); iterator.hasNext();) {
 				String nomeCampoNaoInformado = (String) iterator.next();
-								
-				if(indice < camposNaoInformados.size())
+
+				if (indice < camposNaoInformados.size())
 					listaCamposSepVirgula = listaCamposSepVirgula + nomeCampoNaoInformado + ", ";
 				else
 					listaCamposSepVirgula = listaCamposSepVirgula + nomeCampoNaoInformado;
-				
+
 				indice++;
 			}
 		}
-		
-		if(!"".equalsIgnoreCase(listaCamposSepVirgula))
+
+		if (!"".equalsIgnoreCase(listaCamposSepVirgula))
 			throw new CamposObrigatoriosNaoInformadosException(listaCamposSepVirgula);
 	}
 }

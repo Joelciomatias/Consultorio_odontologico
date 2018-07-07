@@ -35,16 +35,16 @@ public class Consulta {
 	@JoinColumn(name = "fk_usuario", referencedColumnName = "id_usuario", nullable = false)
 	private Usuario usuario;	
 
-	
-	/*@OneToMany(mappedBy = "consulta", fetch=FetchType.LAZY)
-	private List<Paciente> pacientes;*/
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "fk_paciente", referencedColumnName = "pac_id", nullable = true)	
+	private Paciente paciente;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "fk_dentista", referencedColumnName = "dent_id", nullable = false)	
+	@JoinColumn(name = "fk_dentista", referencedColumnName = "dent_id", nullable = true)	
 	private Dentista dentista;
 	
 	@OneToOne(cascade=CascadeType.ALL, orphanRemoval=true)
-	@JoinColumn(name = "fk_agenda", referencedColumnName = "id_agenda", nullable = false)
+	@JoinColumn(name = "fk_agenda", referencedColumnName = "id_agenda", nullable = true)
 	private Agenda agenda;
 
 	
@@ -54,10 +54,19 @@ public class Consulta {
 	public Consulta() {		
 	}
 	
-	public Consulta(Agenda agenda, Usuario usuario) {
+	public Consulta(Agenda agenda,Paciente paciente,Dentista dentista, Usuario usuario) {
 		this.agenda = agenda;
+		this.paciente = paciente;
+		this.dentista = dentista;
 		this.usuario = usuario;
 	}
+	
+	public Consulta(Agenda agenda,Paciente paciente,Dentista dentista) {
+		this.agenda = agenda;
+		this.paciente = paciente;
+		this.dentista = dentista;
+	}
+	
 
 	public Long getId() {
 		return id;
@@ -74,16 +83,23 @@ public class Consulta {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
+	public Paciente getPaciente() {
+		return paciente;
+	}
 
-	public Dentista getDentistas() {
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+	
+	
+	public Dentista getDentista() {
 		return dentista;
 	}
 
 	public void setDentistas(Dentista dentista) {
 		this.dentista = dentista;
 	}
-	
-	
 	
 	public Agenda getAgenda() {
 		return agenda;

@@ -52,15 +52,18 @@ public class PessoaDAOImpl extends GenericaDAOImpl<Pessoa, Long> implements IPes
 		sqlFrom.append(" = :");
 		sqlFrom.append("idUsuario");
 		
-		sqlFrom.append(" AND lower(");		
+		sqlFrom.append(" AND ");
+
+		sqlFrom.append("nome");
+		sqlFrom.append(" = :");
 		sqlFrom.append(NOME_P1);
-		sqlFrom.append(") LIKE :");
-		sqlFrom.append(NOME_P1);
+		/*sqlFrom.append(") LIKE :");
+		sqlFrom.append(NOME_P1);*/
 		
 		TypedQuery<Pessoa> consultaTipada = getEntityManager().createQuery(sqlFrom.toString(), this.entityClass);
 		
 		consultaTipada.setParameter("idUsuario", idUsuarioLogado);
-		consultaTipada.setParameter(NOME_P1, "%" + nome.toLowerCase() + "%");
+	consultaTipada.setParameter("nome",nome);
 		
 		return consultaTipada.getResultList();
 	}

@@ -31,7 +31,8 @@ import br.edu.aplicacao.enums.UnidadeFederacaoEnum;
 import br.edu.aplicacao.exceptions.CamposObrigatoriosNaoInformadosException;
 import br.edu.aplicacao.exceptions.CategoriaTelefoneEnumInvalidaException;
 import br.edu.aplicacao.exceptions.ConfirmacaoDeEmailInvalidaException;
-
+import br.edu.aplicacao.exceptions.LoginJahCadastradoException;
+import br.edu.aplicacao.exceptions.nomeJahCadastradoException;
 import br.edu.aplicacao.persistencia.interfaces.IUsuarioDAO;
 import br.edu.aplicacao.persistencia.interfaces.IPessoaDAO;
 import br.edu.aplicacao.persistencia.interfaces.impl.ContatoDAOImpl;
@@ -126,12 +127,12 @@ public class ManterPessoaBB implements Serializable {
 		try {
 			validarCamposObrigatorios();
 
-			
+			validarNomeJahCadastradoInclusao();
 
 			incluirObjeto();
 
 			MensagensJSFUtils.adicionarMsgInfo("Pessoa incluída com sucesso", "");
-		} catch (CamposObrigatoriosNaoInformadosException e) {
+		} catch (CamposObrigatoriosNaoInformadosException | nomeJahCadastradoException e) {
 
 			MensagensJSFUtils.adicionarMsgErro(e.getMessage(), "");
 		} catch (Exception e) {
@@ -207,6 +208,24 @@ public class ManterPessoaBB implements Serializable {
 			throw new CamposObrigatoriosNaoInformadosException("nome");
 	}
 
+	
+	private void validarNomeJahCadastradoInclusao() throws nomeJahCadastradoException {
+
+		List<Pessoa> resultadoPesquisaNome = daoPessoa.pesquisar(nome, null);
+
+		if (resultadoPesquisaNome != null && resultadoPesquisaNome.size() > 0)
+			throw new nomeJahCadastradoException();
+	}
+
+/*	private void validarNomeJahCadastradoMeusDados() throws nomeJahCadastradoException {
+
+		List<Pessoa> resultadoPesquisaNome = daoPessoa.pesquisar(nome, null);
+
+		if (resultadoPesquisaNome != null && resultadoPesquisaNome.size() > 1)
+			throw new nomeJahCadastradoException();
+	}*/
+	
+	
 	public void prepararAlteracao(Long idPessoaPesquisa) {
 		if (idPessoaPesquisa != null) {
 

@@ -8,7 +8,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import com.ibm.icu.text.DateFormat;
-import br.edu.aplicacao.entidades.Pessoa;
 import br.edu.aplicacao.entidades.Contato;
 import br.edu.aplicacao.entidades.Endereco;
 import br.edu.aplicacao.entidades.Grupo;
@@ -16,24 +15,29 @@ import br.edu.aplicacao.entidades.Telefone;
 import br.edu.aplicacao.entidades.Usuario;
 import br.edu.aplicacao.entidades.Paciente;
 import br.edu.aplicacao.entidades.Dentista;
+import br.edu.aplicacao.entidades.Agenda;
+import br.edu.aplicacao.entidades.Consulta;
 import br.edu.aplicacao.enums.CategoriaEnderecoEnum;
 import br.edu.aplicacao.enums.CategoriaTelefoneEnum;
 import br.edu.aplicacao.enums.TipoEnderecoEnum;
 import br.edu.aplicacao.enums.UnidadeFederacaoEnum;
 import br.edu.aplicacao.persistencia.interfaces.IContatoDAO;
 import br.edu.aplicacao.persistencia.interfaces.IPacienteDAO;
-import br.edu.aplicacao.persistencia.interfaces.IPessoaDAO;
 import br.edu.aplicacao.persistencia.interfaces.IDentistaDAO;
 import br.edu.aplicacao.persistencia.interfaces.IGrupoDAO;
 import br.edu.aplicacao.persistencia.interfaces.ITelefoneDAO;
 import br.edu.aplicacao.persistencia.interfaces.IUsuarioDAO;
+import br.edu.aplicacao.persistencia.interfaces.IAgendaDAO;
+import br.edu.aplicacao.persistencia.interfaces.IConsultaDAO;
 import br.edu.aplicacao.persistencia.interfaces.impl.ContatoDAOImpl;
 import br.edu.aplicacao.persistencia.interfaces.impl.DentistaDAOImpl;
 import br.edu.aplicacao.persistencia.interfaces.impl.PacienteDAOImpl;
-import br.edu.aplicacao.persistencia.interfaces.impl.PessoaDAOImpl;
 import br.edu.aplicacao.persistencia.interfaces.impl.GrupoDAOImpl;
 import br.edu.aplicacao.persistencia.interfaces.impl.TelefoneDAOImpl;
 import br.edu.aplicacao.persistencia.interfaces.impl.UsuarioDAOImpl;
+import br.edu.aplicacao.persistencia.interfaces.impl.AgendaDAOImpl;
+import br.edu.aplicacao.persistencia.interfaces.impl.ConsultaDAOImpl;
+
 import br.edu.java.utils.DataEHoraUtils;
 import br.edu.javaee.persistencia.EMFactorySingleton;
 
@@ -51,7 +55,9 @@ public class InicializadorBDEmMemoria {
 	
 	private IPacienteDAO daoPaciente;
 	
-	private IPessoaDAO daoPessoa;
+	private IAgendaDAO daoAgenda;
+	
+	private IConsultaDAO daoConsulta;
 	
 	private EntityManager em;
 	
@@ -65,8 +71,9 @@ public class InicializadorBDEmMemoria {
 		daoTelefone = new TelefoneDAOImpl(em);
 		daoGrupo = new GrupoDAOImpl(em);
 		daoPaciente = new PacienteDAOImpl(em);
-		daoPessoa = new PessoaDAOImpl(em);
 		daoDentista = new DentistaDAOImpl(em);
+		daoAgenda = new AgendaDAOImpl(em);
+		daoConsulta = new ConsultaDAOImpl(em);
 		
 		try {
 			em.getTransaction().begin();
@@ -91,9 +98,11 @@ public class InicializadorBDEmMemoria {
 						
 			preparaCadastroDePaciente();
 			
-			preparaCadastroDePessoa();
-			
 			preparaCadastroDeDentista();
+			
+			preparaCadastroDeAgenda();
+			
+			preparaCadastroDeConsulta();
 			
 			if(em.getTransaction().isActive())
 				em.getTransaction().commit();
@@ -116,20 +125,44 @@ public class InicializadorBDEmMemoria {
 		}		
 	}
 
-	private void preparaCadastroDePessoa() throws ParseException {
+	private void preparaCadastroDeConsulta() {
+		Consulta consulta;
+		Usuario defaultUser;		
+		Paciente paciente;
+		Dentista dentista;
+		Agenda agenda;
+				
+		defaultUser = daoUsuario.buscarPor(1L);
+		paciente = daoPaciente.buscarPor(1L);
+		dentista = daoDentista.buscarPor(1L);
+		agenda = daoAgenda.buscarPor(1L);
 		
-	Pessoa pessoa;
 		
-		Usuario usuarioadm;
-		// Dono da Lista = ADM
-		usuarioadm = daoUsuario.buscarPor(1L);
-		pessoa = new Pessoa("joao",DataEHoraUtils.dataHoraStringParaDate("01/06/2018 12:00"),"Masculino",usuarioadm);
+		consulta = new Consulta(agenda,paciente,dentista,defaultUser);
 		
-		daoPessoa.inserir(pessoa);	
+		daoConsulta.inserir(consulta);
 		
 		em.flush();
 		
 	}
+
+	private void preparaCadastroDeAgenda() throws ParseException {
+		Agenda agenda;
+		
+		Usuario usuarioadm;		
+		
+		// Dono da consulta = ADM
+		usuarioadm = daoUsuario.buscarPor(1L);
+					
+		agenda = new Agenda(DataEHoraUtils.dataHoraStringParaDate("10/07/2018 10:00"),DataEHoraUtils.dataHoraStringParaDate("10/07/2018 00:00")
+				,null,usuarioadm);
+		
+		daoAgenda.inserir(agenda);
+		
+		em.flush();
+		
+	}
+
 
 	private void listarTodosPacientes() {
 		// TODO Auto-generated method stub
