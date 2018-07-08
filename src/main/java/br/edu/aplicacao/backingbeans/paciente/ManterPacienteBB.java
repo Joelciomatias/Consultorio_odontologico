@@ -80,6 +80,9 @@ public class ManterPacienteBB implements Serializable {
 	private Long id;
 	private String nome;
 	private String email;
+	private String cpf;
+	private String telefone;
+	private String endereco;
 	private String emailConfirmacao;
 	private Date dtNascimento;
 
@@ -109,6 +112,29 @@ public class ManterPacienteBB implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 
 	public Date getDtNascimento() {
@@ -212,7 +238,7 @@ public class ManterPacienteBB implements Serializable {
 	private Paciente criarObjPacienteApartirDaView() {
 		Paciente paciente;
 
-		paciente = new Paciente(nome, email, dtNascimento);
+		paciente = new Paciente(nome,cpf, email,telefone,endereco, dtNascimento);
 
 		return paciente;
 	}
@@ -317,6 +343,7 @@ public class ManterPacienteBB implements Serializable {
 		inicializaDAOsValorPadrao();
 	}
 
+	
 	private void inicializaDAOsValorPadrao() {
 		daoPaciente = new PacienteDAOImpl();
 		

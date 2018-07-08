@@ -17,13 +17,7 @@
 			</li>
 			
 			
-			
-			<!-- Menu: Dashboard (ADM) -->
-			<li class="#{activeMenu eq 'dashboard' ? 'active' : ''}" jsf:rendered="#{autenticadorBB.ehAdministradorUsuarioLogado}">
-				<p:link href="/pages/dashboard/dashboard_adm.jsf"> 
-					<i class="fa fa-user"></i><span>Dashboard (ADM)</span> 
-				</p:link>
-			</li>
+
 			
 			<!-- Menu: Cadastros -->
 			<li class="treeview #{activeMenu eq 'cadastrosBasicos' ? 'active' : ''}" > 
@@ -68,12 +62,12 @@
 			<!-- Menu: Agenda -->
 			<li class="treeview #{activeMenu eq 'agenda' ? 'active' : ''}" > 
 				<a href="#"> 
-					<i class="fa fa-user"></i> <span>Agenda</span> 
+					<i class="fa fa-calendar"></i> <span>Agenda</span> 
 					<i class="fa fa-angle-left pull-right"></i>
 				</a>
 				
 				<!-- SubMenu: Contatos -->
-				<ul class="treeview-menu" >
+			<!--	<ul class="treeview-menu" >
 					<li class="#{activeSubmenu eq 'contato' ? 'active' : ''}" >
 						<p:link href="/pages/contato/pesquisar_contato.jsf" ajax="false">
 							<i class="fa fa-circle-o"></i>Contatos
@@ -81,31 +75,28 @@
 					</li>					
 				</ul>
 				
-				<!-- SubMenu: Grupos -->
+				SubMenu: Grupos
 				<ul class="treeview-menu" >
 					<li class="#{activeSubmenu eq 'grupo' ? 'active' : ''}" >
 						<p:link href="/pages/grupo/pesquisar_grupo.jsf" ajax="false">
 							<i class="fa fa-circle-o"></i>Grupos
 						</p:link>
 					</li>					
-				</ul>				
+				</ul>				 -->
 			</li> 			
-			
+			<!-- Menu: Consulta -->
+			<li class="treeview #{activeMenu eq 'consulta' ? 'active' : ''}" > 
+				<a href="#"> 
+					<i class="fa fa-heart"></i> <span>Consultas</span> 
+					<i class="fa fa-angle-left pull-right"></i>
+				</a>
+			</li>	
 			<!-- Menu: Relatórios -->
 			<li class="treeview #{activeMenu eq 'relatorios' ? 'active' : ''}" > 
 				<a href="#"> 
-					<i class="fa fa-user"></i> <span>Relatórios</span> 
+					<i class="fa fa-file"></i> <span>Relatórios</span> 
 					<i class="fa fa-angle-left pull-right"></i>
 				</a>
-				
-				<!-- SubMenu: Aniversariantes -->
-				<ul class="treeview-menu" >
-					<li class="#{activeSubmenu eq 'aniversariantes' ? 'active' : ''}" >
-						<p:link href="/pages/relatorios/rel_lista_aniversariantes.jsf" ajax="false">
-							<i class="fa fa-circle-o"></i>Lista de Aniversariantes
-						</p:link>
-					</li>					
-				</ul>				
 			</li>
 			
 			<!-- Menu: Sair -->
@@ -116,13 +107,7 @@
 			</li>
 			
 			
-			<li class="treeview-menu" jsf:rendered="#{autenticadorBB.ehAdministradorUsuarioLogado}">
-					<li class="#{activeSubmenu eq 'usuario' ? 'active' : ''}" >
-						<p:link href="/pages/pessoa/pesquisar_pessoa.jsf" ajax="false">
-							<i class="fa fa-file-powerpoint-o"></i>Pessoa (ProgVisual)
-						</p:link>
-					</li>					
-				</li>	
+		
 		</ul>
 	</h:form>
 </ui:composition>

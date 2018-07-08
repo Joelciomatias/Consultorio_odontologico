@@ -175,8 +175,10 @@ public class InicializadorBDEmMemoria {
 		Usuario usuarioadm;
 		// Dono da Lista = ADM
 		usuarioadm = daoUsuario.buscarPor(1L);
-		paciente = new Paciente("joao","joao@contato.com.br",
+		paciente = new Paciente("joao","003.233.324.11","joao@contato.com.br",
+				"239988776655","rua das flores 280",
 				DataEHoraUtils.dataHoraStringParaDate("01/06/2018 12:00"),usuarioadm);
+		
 		
 		daoPaciente.inserir(paciente);	
 		

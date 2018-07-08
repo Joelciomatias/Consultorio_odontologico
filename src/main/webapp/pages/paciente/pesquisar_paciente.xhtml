@@ -120,7 +120,7 @@
 									icon="ui-icon-pencil" 									 	 
 								 	title="Alterar paciente"							 		
 							 		ajax="false"
-								 	action="#{pesquisarPacienteBB.redirecionarParaAlteracaopaciente(paciente.id)}">
+								 	action="#{pesquisarPacienteBB.redirecionarParaAlteracaoPaciente(paciente.id)}">
 								</p:commandButton>
 								
 								<p:commandButton 
@@ -128,7 +128,7 @@
 									icon="ui-icon-trash"									 	 
 									title="Remover paciente"	
 								 	ajax="true"								 		
-								 	actionListener="#{pesquisarPacienteBB.removerpaciente(paciente.id)}"
+								 	actionListener="#{pesquisarPacienteBB.removerPaciente(paciente.id)}"
 							 		update=":gridForm :pacientePesquisarForm">		
 									 	
 									<p:confirm header="Confirmação" message="Tem certeza que deseja continuar?" icon="ui-icon-alert" />	 

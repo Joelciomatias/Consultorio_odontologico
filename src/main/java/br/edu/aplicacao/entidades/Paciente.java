@@ -28,15 +28,51 @@ public class Paciente {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column(name = "pac_nome", length = 150, nullable = false)
+	@Column(name = "pac_nome", length = 50, nullable = false)
 	private String nome;
-
-	@Column(name = "pac_email", length = 70, nullable = true)
+	
+	@Column(name = "pac_cpf", length = 14, nullable = false)
+	private String cpf;
+	
+	@Column(name = "pac_email", length = 50, nullable = true)
 	private String email;
+	
+	@Column(name = "pac_telefone", length = 50, nullable = true)
+	private String telefone;
+	
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public Date getDtInclusao() {
+		return dtInclusao;
+	}
+
+	public void setDtInclusao(Date dtInclusao) {
+		this.dtInclusao = dtInclusao;
+	}
+
+	@Column(name = "pac_endereco", length = 50, nullable = true)
+	private String endereco;
 
 	@Column(name = "pac_nascimento", nullable = true)
 	private Date dtNascimento;
-
+	
+	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "fk_usuario", referencedColumnName = "id_usuario", nullable = false)
 	private Usuario usuario;
@@ -49,18 +85,25 @@ public class Paciente {
 		
 	}
 
-	public Paciente(String nome, String email, Date dtNascimento, Usuario usuario) {
+	public Paciente(String nome, String cpf, String email, String telefone, String endereco, Date dtNascimento,
+			Usuario usuario) {
 		this.nome = nome;
+		this.cpf = cpf;
 		this.email = email;
+		this.telefone = telefone;
+		this.endereco = endereco;
 		this.dtNascimento = dtNascimento;
 		this.usuario = usuario;
 	}
 	
-	public Paciente(String nome, String email, Date dtNascimento) {
+	public Paciente(String nome, String cpf, String email, String telefone, String endereco, Date dtNascimento) {
 		this.nome = nome;
+		this.cpf = cpf;
 		this.email = email;
+		this.telefone = telefone;
+		this.endereco = endereco;
 		this.dtNascimento = dtNascimento;
-
+		
 	}
 
 	public Long getId() {
@@ -78,7 +121,14 @@ public class Paciente {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
+	
+	public String getCpf() {
+		return cpf;
+	}
+	
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -95,6 +145,7 @@ public class Paciente {
 		this.dtNascimento = aniversario;
 	}
 	
+	
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -102,7 +153,6 @@ public class Paciente {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -112,6 +162,7 @@ public class Paciente {
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
 	}
@@ -146,6 +197,10 @@ public class Paciente {
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
+		if (cpf == null) {
+			if (other.cpf != null)
+				return false;
+		} else if (!cpf.equals(other.cpf))
 		if (usuario == null) {
 			if (other.usuario != null)
 				return false;
@@ -153,5 +208,6 @@ public class Paciente {
 			return false;
 		return true;
 	}
-
 }
+
+
