@@ -75,6 +75,8 @@ public class ManterDentistaBB implements Serializable {
 	private String telefone;	
 	private String endereco;	
 	private String cro;
+
+	private String cpf;
 				
 	public ManterDentistaBB() {
 	}
@@ -95,6 +97,14 @@ public class ManterDentistaBB implements Serializable {
 		this.nome = nome;
 	}
 	
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
 	public String getTelefone() {
 		return telefone;
 	}
@@ -236,8 +246,8 @@ public class ManterDentistaBB implements Serializable {
 	private Dentista criarObjDentistaApartirDaView() {
 		Dentista Dentista;
 				
-		Dentista = new Dentista(nome, email, dtNascimento,telefone,endereco,cro);
-				
+		Dentista = new Dentista(nome,cpf, email, dtNascimento,telefone,endereco,cro);
+
 		return Dentista;
 	}
 

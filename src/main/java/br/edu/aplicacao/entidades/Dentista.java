@@ -37,6 +37,9 @@ public class Dentista {
 	@Column(name = "dent_nome", length=150, nullable=false)
 	private String nome;
 	
+	@Column(name = "dent_cpf", length = 14, nullable = false)
+	private String cpf;
+	
 	@Column(name = "dent_email", length=70, nullable=true)
 	private String email;
 	
@@ -65,26 +68,44 @@ public class Dentista {
 	public Dentista() {		
 	}
 	
-	public Dentista(String nome, String email, Date dtNascimento,
-			String telefone,String endereco,String cro, Usuario usuario) {
+
+	public Dentista(String nome, String cpf, String email, Date dtNascimento, String telefone, String endereco,
+			String cro, Usuario usuario) {
 		this.nome = nome;
+		this.cpf = cpf;
 		this.email = email;
-		this.dtNascimento = dtNascimento;	
+		this.dtNascimento = dtNascimento;
 		this.telefone = telefone;
 		this.endereco = endereco;
 		this.cro = cro;
 		this.usuario = usuario;
 	}
-	
-	public Dentista(String nome, String email, Date dtNascimento,
-			String telefone,String endereco,String cro) {
+
+
+	public Dentista(String nome, String cpf, String email, Date dtNascimento, String telefone, String endereco,
+			String cro) {
 		this.nome = nome;
+		this.cpf = cpf;
 		this.email = email;
 		this.dtNascimento = dtNascimento;
 		this.telefone = telefone;
 		this.endereco = endereco;
 		this.cro = cro;
 	}
+
+
+	public Dentista(String nome, String email, Date dtNascimento, String telefone, String endereco,
+			String cro, Usuario usuario) {
+		this.nome = nome;
+		
+		this.email = email;
+		this.dtNascimento = dtNascimento;
+		this.telefone = telefone;
+		this.endereco = endereco;
+		this.cro = cro;
+		this.usuario = usuario;
+	}
+
 
 	public Long getId() {
 		return id;
@@ -101,6 +122,18 @@ public class Dentista {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	
+	
+	public String getCpf() {
+		return cpf;
+	}
+
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
 
 	public String getEmail() {
 		return email;

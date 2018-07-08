@@ -48,6 +48,7 @@ public class Usuario {
 		this.ehAdministrador = ehAdm;
 	}
 	
+	
 	public String getLogin() {
 		return login;
 	}

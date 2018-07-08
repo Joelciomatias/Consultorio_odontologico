@@ -16,8 +16,8 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.edu.aplicacao.persistencia.testes.InicializadorBDEmMemoria;
-
+/*import br.edu.aplicacao.persistencia.testes.InicializadorBDEmMemoria;
+*/
 public class GestorLogadoListener implements Filter {
 	
 	public static String USUARIO_LOGADO = "USUARIO_LOGADO";
@@ -25,15 +25,15 @@ public class GestorLogadoListener implements Filter {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	public void init(FilterConfig arg0) throws ServletException {
-		logger.info("init GestorLogadoListener");
+	/*	logger.info("init GestorLogadoListener");*/
 		
 		// TODO: deve ser excluída esta referência quando for utilizar uma BD
-		//	real, por exemplo, MySQL, Oracle,...
+/*		//	real, por exemplo, MySQL, Oracle,...
 		try {
 			new InicializadorBDEmMemoria();
 		} catch (Exception e) {
 			logger.error("ERRO ao criar BD em memória", e);
-		}
+		}*/
 	}
 	
 	public void destroy() {

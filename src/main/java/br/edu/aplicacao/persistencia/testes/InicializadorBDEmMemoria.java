@@ -1,4 +1,4 @@
-package br.edu.aplicacao.persistencia.testes;
+/*package br.edu.aplicacao.persistencia.testes;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -138,7 +138,7 @@ public class InicializadorBDEmMemoria {
 		agenda = daoAgenda.buscarPor(1L);
 		
 		
-		consulta = new Consulta(agenda,paciente,dentista,defaultUser);
+		consulta = new Consulta(agenda,"anamnese",paciente,dentista,defaultUser);
 		
 		daoConsulta.inserir(consulta);
 		
@@ -194,7 +194,9 @@ public class InicializadorBDEmMemoria {
 		usuarioadm = daoUsuario.buscarPor(1L);
 					
 		dentista = new Dentista("paulo","paulo@contato.com.br",DataEHoraUtils.dataHoraStringParaDate("01/06/1990 12:00"),
-				"99999099999","rua das flores 4545","85876786-3",usuarioadm);
+				"90909099877","rua das flores 4545","85876786-3",usuarioadm);
+		
+		
 		dentista.setDtInclusao(DataEHoraUtils.dataHoraStringParaDate("10/02/2018 12:00"));
 		daoDentista.inserir(dentista);
 		
@@ -491,3 +493,4 @@ public class InicializadorBDEmMemoria {
 	}
 
 }
+*/
