@@ -120,7 +120,7 @@ public class ManterUsuarioBB implements Serializable {
 
 			incluirObjeto();
 
-			MensagensJSFUtils.adicionarMsgInfo("Usu√°rio inclu√≠do com sucesso", "");
+			MensagensJSFUtils.adicionarMsgInfo("Usu·rio incluÌdo com sucesso", "");
 		} catch (CamposObrigatoriosNaoInformadosException | ConfirmacaoSenhaInvalidaException
 				| LoginJahCadastradoException | TamanhoSenhaInvalidoException e) {
 
@@ -136,7 +136,7 @@ public class ManterUsuarioBB implements Serializable {
 		try {
 			alterarPerfilObjeto();
 
-			MensagensJSFUtils.adicionarMsgInfo("Usu√°rio alterado com sucesso", "");
+			MensagensJSFUtils.adicionarMsgInfo("Usu·rio alterado com sucesso", "");
 		} catch (Exception e) {
 
 			MensagensJSFUtils.msgELogDeERROInternoEOuSistema(logger, e);

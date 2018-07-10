@@ -37,10 +37,10 @@ public class Paciente {
 	@Column(name = "pac_email", length = 50, nullable = true)
 	private String email;
 	
-	@Column(name = "pac_telefone", length = 50, nullable = true)
+	@Column(name = "pac_telefone", length = 20, nullable = true)
 	private String telefone;
 
-	@Column(name = "pac_endereco", length = 50, nullable = true)
+	@Column(name = "pac_endereco", length = 100, nullable = true)
 	private String endereco;
 
 	@Column(name = "pac_nascimento", nullable = true)

@@ -19,7 +19,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /** 
- * Entidade Dentista: id, nome, email, dt nascimento, usuário (responsável pelo dentista) e 
+ * Entidade Dentista: id, nome, email, dt nascimento, Usuario (responsável pelo dentista) e 
  * 	lista de telefones.
  * 
  * @author joelcio
@@ -34,22 +34,22 @@ public class Dentista {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name = "dent_nome", length=150, nullable=false)
+	@Column(name = "dent_nome", length=50, nullable=false)
 	private String nome;
 	
 	@Column(name = "dent_cpf", length = 14, nullable = false)
 	private String cpf;
 	
-	@Column(name = "dent_email", length=70, nullable=true)
+	@Column(name = "dent_email", length=50, nullable=true)
 	private String email;
 	
 	@Column(name = "dent_nascimento", nullable=true)
 	private Date dtNascimento;
 	
-	@Column(name = "dent_telefone", length=12, nullable=true)
+	@Column(name = "dent_telefone", length=20, nullable=true)
 	private String telefone;
 	
-	@Column(name = "dent_endereco", length=70, nullable=true)
+	@Column(name = "dent_endereco", length=100, nullable=true)
 	private String endereco;
 	
 	@Column(name = "dent_cro", length=11, nullable=true)

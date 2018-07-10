@@ -19,9 +19,9 @@ import org.slf4j.LoggerFactory;
 import br.edu.aplicacao.backingbeans.AutenticadorBB;
 import br.edu.aplicacao.dtos.CodigoDescricaoDTO;
 import br.edu.aplicacao.dtos.UsuarioLogadoDTO;
-import br.edu.aplicacao.entidades.Contato;
+/*import br.edu.aplicacao.entidades.Contato;
 import br.edu.aplicacao.persistencia.interfaces.IContatoDAO;
-import br.edu.aplicacao.persistencia.interfaces.impl.ContatoDAOImpl;
+import br.edu.aplicacao.persistencia.interfaces.impl.ContatoDAOImpl;*/
 import br.edu.javaee.web.utils.JSFUtils;
 import br.edu.javaee.web.utils.MensagensJSFUtils;
 import br.edu.javaee.web.utils.RelatoriosUtils;
@@ -30,7 +30,7 @@ import br.edu.javaee.web.utils.RelatoriosUtils;
 @ViewScoped
 public class GerarListaDeAniversariantesBB implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	/*private static final long serialVersionUID = 1L;
 	
 	private static final String NOME_PARAM_MES = "MES";
 	
@@ -139,5 +139,5 @@ public class GerarListaDeAniversariantesBB implements Serializable {
 			}
 		}
 		return contatos;
-	}
+	}*/
 }

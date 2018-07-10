@@ -17,11 +17,9 @@ import org.slf4j.LoggerFactory;
 import br.edu.aplicacao.backingbeans.AutenticadorBB;
 import br.edu.aplicacao.dtos.ItemListaTelefoneDTO;
 import br.edu.aplicacao.dtos.UsuarioLogadoDTO;
-import br.edu.aplicacao.entidades.Contato;
+
 import br.edu.aplicacao.entidades.Paciente;
-import br.edu.aplicacao.entidades.Endereco;
-import br.edu.aplicacao.entidades.Grupo;
-import br.edu.aplicacao.entidades.Telefone;
+
 import br.edu.aplicacao.entidades.Usuario;
 import br.edu.aplicacao.enums.CategoriaEnderecoEnum;
 import br.edu.aplicacao.enums.CategoriaTelefoneEnum;
@@ -32,15 +30,12 @@ import br.edu.aplicacao.exceptions.CategoriaTelefoneEnumInvalidaException;
 import br.edu.aplicacao.exceptions.ConfirmacaoDeEmailInvalidaException;
 import br.edu.aplicacao.exceptions.IdTelefoneInvalidoException;
 import br.edu.aplicacao.exceptions.TamanhoCampoInvalidoException;
-import br.edu.aplicacao.persistencia.interfaces.IContatoDAO;
-import br.edu.aplicacao.persistencia.interfaces.IGrupoDAO;
-import br.edu.aplicacao.persistencia.interfaces.ITelefoneDAO;
+
 import br.edu.aplicacao.persistencia.interfaces.IUsuarioDAO;
 import br.edu.aplicacao.persistencia.interfaces.IPacienteDAO;
-import br.edu.aplicacao.persistencia.interfaces.impl.ContatoDAOImpl;
+
 import br.edu.aplicacao.persistencia.interfaces.impl.PacienteDAOImpl;
-import br.edu.aplicacao.persistencia.interfaces.impl.GrupoDAOImpl;
-import br.edu.aplicacao.persistencia.interfaces.impl.TelefoneDAOImpl;
+
 import br.edu.aplicacao.persistencia.interfaces.impl.UsuarioDAOImpl;
 import br.edu.java.utils.DataEHoraUtils;
 import br.edu.java.utils.StringsUtils;
@@ -50,16 +45,9 @@ import br.edu.javaee.web.utils.MensagensJSFUtils;
 /**
  * Esta classe auxilia na implementação dos seguintes requisitos/cenários:
  * 
- * - Pesquisar, Incluir, Alterar e Excluir contato(s) associado ao usuário
- * logado no sistema.
+
  * 
- * - Incluir, Alterar e/ou Excluir telefone(s) para/de um determinado contato.
- * Atenção: a inclusão, a alteração e a exclusão de um determinado telefone na
- * lista de telefones são mantidas em memória, elas são apenas efetivadas em
- * banco de dados quando o usuário clica em Incluir ou Alterar do contato.
- * 
- * @author vagner.l@uninter.com
- * @author vagnercml@hotmail.com
+	@author joelcio_psx@hotmail.com
  *
  */
 @Named
@@ -174,7 +162,7 @@ public class ManterPacienteBB implements Serializable {
 
 			incluirObjeto();
 
-			MensagensJSFUtils.adicionarMsgInfo("Paciente incluído com sucesso", "");
+			MensagensJSFUtils.adicionarMsgInfo("Paciente inclu�do com sucesso", "");
 		} catch (CamposObrigatoriosNaoInformadosException e) {
 
 			MensagensJSFUtils.adicionarMsgErro(e.getMessage(), "");
@@ -277,6 +265,9 @@ public class ManterPacienteBB implements Serializable {
 			this.id = idPacientePesquisa;
 			this.nome = paciente.getNome();
 			this.email = paciente.getEmail();
+			this.cpf = paciente.getCpf();
+			this.endereco = paciente.getEndereco();
+			this.telefone = paciente.getTelefone();
 			this.emailConfirmacao = this.email;
 			this.dtNascimento = paciente.getDtNascimento();
 			this.ehAlteracao = true;
@@ -293,7 +284,7 @@ public class ManterPacienteBB implements Serializable {
 
 			alterarObjeto();
 
-			MensagensJSFUtils.adicionarMsgInfo("Contato alterado com sucesso", "");
+			MensagensJSFUtils.adicionarMsgInfo("Paciente alterado com sucesso", "");
 		} catch (CamposObrigatoriosNaoInformadosException  e) {
 
 			MensagensJSFUtils.adicionarMsgErro(e.getMessage(), "");
@@ -318,8 +309,10 @@ public class ManterPacienteBB implements Serializable {
 			paciente.setNome(nome);
 			paciente.setEmail(email);
 			paciente.setDtNascimento(dtNascimento);
-
-
+			paciente.setCpf(cpf);
+			paciente.setEndereco(endereco);
+			paciente.setTelefone(telefone);
+		
 			paciente = daoPaciente.alterar(paciente);
 
 	

@@ -61,9 +61,9 @@ public class AutenticadorBB implements Serializable {
 					
 					proximaPagina = "inicio?faces-redirect=true";				
 				} else if(usuarios.size() > 1) {
-					MensagensJSFUtils.adicionarMsgErro("Há dois usuários cadastrados com o mesmo login e a mesma senha.", "");
+					MensagensJSFUtils.adicionarMsgErro("H� dois usuarios cadastrados com o mesmo login e a mesma senha.", "");
 				} else {
-					MensagensJSFUtils.adicionarMsgErro("Ususário/senha não cadastrado.", "");
+					MensagensJSFUtils.adicionarMsgErro("Usuario/senha n�o cadastrado.", "");
 				}
 			} else {
 				MensagensJSFUtils.adicionarMsgErro("Ususário/senha não cadastrado.", "");

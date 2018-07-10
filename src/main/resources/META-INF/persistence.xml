@@ -11,18 +11,14 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		
 		<class>br.edu.aplicacao.entidades.Usuario</class>
-		<class>br.edu.aplicacao.entidades.Contato</class>
 		<class>br.edu.aplicacao.entidades.Dentista</class>
-		<class>br.edu.aplicacao.entidades.Telefone</class>
-		<class>br.edu.aplicacao.entidades.Endereco</class>
-		<class>br.edu.aplicacao.entidades.Grupo</class>
 		<class>br.edu.aplicacao.entidades.Paciente</class>
 		<class>br.edu.aplicacao.entidades.Pessoa</class>
 		<class>br.edu.aplicacao.entidades.Consulta</class>
 		<class>br.edu.aplicacao.entidades.Agenda</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/odontosys?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/odonto_sys?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password" value="" />	
 					
@@ -34,6 +30,7 @@
       <property name="hibernate.format_sql" value="true" />
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
       <property name="hibernate.hbm2ddl.auto" value="validate" />
+    <!--   create-drop -->
       
 			<!-- para teste ou durante o desenvolvimento -->
 		 	<property name="hibernate.hbm2ddl.auto" value="update" /> 

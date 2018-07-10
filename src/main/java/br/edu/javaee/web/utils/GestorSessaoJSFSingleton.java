@@ -6,7 +6,7 @@ import javax.faces.context.FacesContext;
 /**
  * Classe permite a manipulação da sessao JSF da aplicacao.
  * 
- * @author vagnercml
+ * @author 
  */
 public class GestorSessaoJSFSingleton {
 

@@ -56,6 +56,19 @@
 						/>							
 					</div>
 					
+					<!-- Campo: cpf -->
+					<div class="form-group col-md-3">
+						<p:outputLabel for="cpf" value="CPF" indicateRequired="true" />
+
+						<p:inputMask 
+							value="#{manterDentistaBB.cpf}"							
+							id="cpf" 
+							required="true" 
+							maxlength="14"
+							styleClass="form-control" 
+							mask="999.999.999-99"
+						/>							
+					</div>
 					<!-- Campo: email -->
 					<div class="form-group col-md-3">
 						<p:outputLabel for="email" value="Email" indicateRequired="false" />
@@ -95,32 +108,19 @@
 						</p:inputText>
 					</div>
 					
-					<!-- Campo: dt nascimento -->
-					<div class="form-group col-md-3">						
-						<p:outputLabel for="dtNascimento" value="Data de Nascimento" indicateRequired="false" />
-
-						<p:calendar 
-							value="#{manterDentistaBB.dtNascimento}"
-							id="dtNascimento"
-							required="false"  
-							pattern="dd/MM/yyyy" 
-							mask="true"
-							locale="pt_BR"			
-							styleClass="form-control"
-							style="border-color: transparent !important; padding-left: 0px !important;"															
-						/>
-					</div>
+				
 
 					<!-- Campo: telefone -->
 					<div class="form-group col-md-3">
 						<p:outputLabel for="telefone" value="Telefone" indicateRequired="false" />
 
-						<p:inputText 
+						<p:inputMask
 							value="#{manterDentistaBB.telefone}"							
 							id="telefone" 
 							required="false" 
 							maxlength="150"
-							styleClass="form-control" 
+							styleClass="form-control"
+							mask="(41)99999-9999" 
 						/>							
 					</div>
 					
@@ -139,7 +139,7 @@
 					
 						<!-- Campo: cro -->
 					<div class="form-group col-md-3">
-						<p:outputLabel for="cro" value="cro" indicateRequired="false" />
+						<p:outputLabel for="cro" value="CRO" indicateRequired="false" />
 
 						<p:inputText 
 							value="#{manterDentistaBB.cro}"							
@@ -148,6 +148,22 @@
 							maxlength="11"
 							styleClass="form-control" 
 						/>							
+					</div>
+					
+						<!-- Campo: dt nascimento -->
+					<div class="form-group col-md-3">						
+						<p:outputLabel for="dtNascimento" value="Data de Nascimento" indicateRequired="false" />
+
+						<p:calendar 
+							value="#{manterDentistaBB.dtNascimento}"
+							id="dtNascimento"
+							required="false"  
+							pattern="dd/MM/yyyy" 
+							mask="true"
+							locale="pt_BR"			
+							styleClass="form-control"
+							style="border-color: transparent !important; padding-left: 0px !important;"															
+						/>
 					</div>
 		
 					<!--	Botões de ação - Dentista

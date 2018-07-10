@@ -12,12 +12,9 @@ import org.slf4j.LoggerFactory;
 
 import br.edu.aplicacao.backingbeans.AutenticadorBB;
 import br.edu.aplicacao.dtos.UsuarioLogadoDTO;
-import br.edu.aplicacao.entidades.Contato;
 import br.edu.aplicacao.entidades.Usuario;
 import br.edu.aplicacao.entidades.Paciente;
-import br.edu.aplicacao.persistencia.interfaces.IContatoDAO;
 import br.edu.aplicacao.persistencia.interfaces.IPacienteDAO;
-import br.edu.aplicacao.persistencia.interfaces.impl.ContatoDAOImpl;
 import br.edu.aplicacao.persistencia.interfaces.impl.UsuarioDAOImpl;
 import br.edu.aplicacao.persistencia.interfaces.impl.PacienteDAOImpl;
 import br.edu.javaee.persistencia.EMFactorySingleton;

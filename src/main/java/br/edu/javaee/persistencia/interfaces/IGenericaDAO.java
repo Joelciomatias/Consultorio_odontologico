@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
  * Interface para criação de uma DAO genérica para inserir, buscar (por id), alterar e
  * 		deletar/apagar objetos em banco de dados relacional
  * 
- * @author vagnercml
+ * @author 
  * @param <T>
  * 		- entidade 
  * @param <PK> 

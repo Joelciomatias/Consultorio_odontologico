@@ -55,6 +55,19 @@
 							styleClass="form-control" 
 						/>							
 					</div>
+					<!-- Campo: cpf -->
+					<div class="form-group col-md-3">
+						<p:outputLabel for="cpf" value="CPF" indicateRequired="true" />
+
+						<p:inputMask 
+							value="#{manterPacienteBB.cpf}"							
+							id="cpf" 
+							required="true" 
+							maxlength="14"
+							styleClass="form-control" 
+							mask="999.999.999-99"
+						/>							
+					</div>
 					
 					<!-- Campo: email -->
 					<div class="form-group col-md-3">
@@ -95,6 +108,32 @@
 						</p:inputText>
 					</div> 
 					
+					<!-- Campo: telefone -->
+					<div class="form-group col-md-3">
+						<p:outputLabel for="telefone" value="Telefone" indicateRequired="false" />
+
+						<p:inputMask
+							value="#{manterPacienteBB.telefone}"							
+							id="telefone" 
+							required="false" 
+							maxlength="20"
+							styleClass="form-control"
+							mask="(41)99999-9999" 
+						/>							
+					</div>
+					
+						<!-- Campo: endereco -->
+					<div class="form-group col-md-6">
+						<p:outputLabel for="endereco" value="Endereco" indicateRequired="false" />
+
+						<p:inputText 
+							value="#{manterPacienteBB.endereco}"							
+							id="endereco" 
+							required="false" 
+							maxlength="100"
+							styleClass="form-control" 
+						/>							
+					</div>
 					<!-- Campo: dt nascimento -->
 					<div class="form-group col-md-3">						
 						<p:outputLabel for="dtNascimento" value="Data de Nascimento" indicateRequired="false" />

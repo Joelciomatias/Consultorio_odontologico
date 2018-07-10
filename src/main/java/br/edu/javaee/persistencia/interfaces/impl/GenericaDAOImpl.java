@@ -13,7 +13,7 @@ import br.edu.javaee.persistencia.interfaces.IGenericaDAO;
 /**
  * Implementação da DAO genérica
  * 
- * @author vagnercml
+ * @author 
  * @param <T>
  * 		- entidade 
  * @param <PK> 

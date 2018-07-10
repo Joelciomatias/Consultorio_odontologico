@@ -19,11 +19,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /** 
- * Entidade Contato: id, Horario, horario, dt nascimento, usuário (responsável pelo contato) e 
- * 	lista de telefones.
+ * Entidade Agenda:
  * 
- * @author vagner.l@uninter.com
- * @author vagnercml@hotmail.com
+@author joelcio_psx@hotmail.com
  *
  */
 @Entity

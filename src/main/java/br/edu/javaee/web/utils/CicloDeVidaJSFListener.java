@@ -9,7 +9,7 @@ import javax.faces.event.PhaseListener;
 /**
  * Classe que informa as fases (ou ciclo de vida) dos componentes JSF
  * 
- * @author vagnercml
+ * @author 
  */
 public class CicloDeVidaJSFListener implements PhaseListener {
 

@@ -24,11 +24,11 @@ import org.slf4j.LoggerFactory;
 
 import br.edu.aplicacao.backingbeans.AutenticadorBB;
 import br.edu.aplicacao.dtos.HistoricoInclusaoDTO;
-import br.edu.aplicacao.entidades.Contato;
+/*import br.edu.aplicacao.entidades.Contato;
 import br.edu.aplicacao.entidades.Usuario;
 import br.edu.aplicacao.persistencia.interfaces.IContatoDAO;
 import br.edu.aplicacao.persistencia.interfaces.IUsuarioDAO;
-import br.edu.aplicacao.persistencia.interfaces.impl.ContatoDAOImpl;
+import br.edu.aplicacao.persistencia.interfaces.impl.ContatoDAOImpl;*/
 import br.edu.aplicacao.persistencia.interfaces.impl.UsuarioDAOImpl;
 import br.edu.java.utils.DataEHoraUtils;
 import br.edu.javaee.web.utils.MensagensJSFUtils;
@@ -37,7 +37,7 @@ import br.edu.javaee.web.utils.MensagensJSFUtils;
 @RequestScoped
 public class DashboardBB implements Serializable {
 
-	private static final long serialVersionUID = 1L;	
+/*	private static final long serialVersionUID = 1L;	
 	private static final int QTD_MESES = 6;
 	
 	private IContatoDAO daoContato = new ContatoDAOImpl();	
@@ -344,5 +344,5 @@ public class DashboardBB implements Serializable {
 		historico.add(dtoPreparacao);
 		
 		return historico;
-	}	
+	}	*/
 }

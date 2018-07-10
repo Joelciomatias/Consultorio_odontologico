@@ -8,7 +8,7 @@ import javax.persistence.Persistence;
  * Classe para criar/retornar uma única fábrica de gerenciador de entidade 
  * 	(ou EntityManagerFactory).
  * 
- * @author vagnercml
+ * @author 
  */
 public class EMFactorySingleton {
 
